@@ -1,0 +1,6 @@
+framework module AliyunVodPlayerSDK {
+  umbrella header "AliyunVodPlayerSDK.h"
+
+  export *
+  module * { export * }
+}
