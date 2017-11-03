@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AliyunPlayer_iOS"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "AliyunPlayer_iOS."
 
   # This description is used to generate tags and improve search results.
@@ -39,8 +39,8 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
-  # s.license      = { :type => ""Apache License, Version 2.0", :file => "LICENSE" }
+  # s.license      = "MIT (example)"
+   s.license      = { :type => ""Apache License, Version 2.0", :file => "LICENSE" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
