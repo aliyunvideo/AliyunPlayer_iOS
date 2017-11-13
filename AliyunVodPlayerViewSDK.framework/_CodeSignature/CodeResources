@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/AliyunVodPlayerView.h</key>
 		<data>
-		YHBPI/MSEiGpbq7GP06/Js1NKwo=
+		vlA9/bRiQCOrnVF2q3HvTljd4mg=
 		</data>
 		<key>Headers/AliyunVodPlayerViewDefine.h</key>
 		<data>
@@ -15,10 +15,6 @@
 		<key>Headers/AliyunVodPlayerViewSDK.h</key>
 		<data>
 		Q0HrHOCU2SAUW0mmnZB/H6D6SA8=
-		</data>
-		<key>Info.plist</key>
-		<data>
-		hyOk41KvATb43AV4TSNaRhQE/rs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -31,11 +27,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			YHBPI/MSEiGpbq7GP06/Js1NKwo=
+			vlA9/bRiQCOrnVF2q3HvTljd4mg=
 			</data>
 			<key>hash2</key>
 			<data>
-			iNhLCSfjqfalu/XAwVoQigJUMUd5IjapFaJoPdntFLY=
+			MpAgIgawY3re7J12ehvlChXpNpn6SaGX6QsCmmHyQ3w=
 			</data>
 		</dict>
 		<key>Headers/AliyunVodPlayerViewDefine.h</key>

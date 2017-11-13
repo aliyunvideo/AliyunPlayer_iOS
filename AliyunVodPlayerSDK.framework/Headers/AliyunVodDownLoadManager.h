@@ -21,12 +21,28 @@
 @property(nonatomic,copy)NSString* format;
 @end
 
+
+@interface AliyunStsData :NSObject
+@property(nonatomic,copy)NSString *accessKeyId;
+@property(nonatomic,copy)NSString *accessKeySecret;
+@property(nonatomic,copy)NSString *securityToken;
+
+@end
+
 @interface AliyunDataSource : NSObject
+
+@property (nonatomic,assign)AliyunVodRequestMethod requestMethod;
 @property(nonatomic,copy)NSString *vid;
 @property(nonatomic,copy)NSString *playAuth;
 @property(nonatomic,assign)AliyunVodPlayerVideoQuality quality;
 @property(nonatomic,copy)NSString *format;
+
+@property(nonatomic,strong)AliyunStsData *stsData;
+
 @end
+
+
+
 
 @class AliyunVodDownLoadManager;
 
@@ -40,9 +56,19 @@
 
 
 /*
- 功能：获取playAuth凭证。
- */
+  功能：开始下载后收到回调，更新最新的playAuth。主要场景是开始多个下载时，等待下载的任务自动开始下载后，playAuth有可能已经过期了，需通过此回调更新
+  */
 -(NSString*) onGetPlayAuth:(NSString*)vid format:(NSString*)format quality:(AliyunVodPlayerVideoQuality)quality;
+
+
+/*
+  功能：开始下载后收到回调，更新最新的stsData。主要场景是开始多个下载时，等待下载的任务自动开始下载后，stsData有可能已经过期了，需通过此回调更新
+ */
+- (void)onGetAliyunStsData:(AliyunStsData*)stsData
+                   videoID:(NSString *)videoID
+                    format:(NSString*)format
+                   quality:(AliyunVodPlayerVideoQuality)quality;
+
 
 /*
  功能：准备下载回调。
@@ -57,38 +83,39 @@
 -(void) onStart:(AliyunDownloadMediaInfo*)mediaInfo;
 
 /*
- 功能：下载进度回调。
- 回调数据：AliyunDownloadMediaInfo
- */
+  功能：下载进度回调。可通过mediaInfo.downloadProgress获取进度。
+  回调数据：AliyunDownloadMediaInfo
+  */
 -(void) onProgress:(AliyunDownloadMediaInfo*)mediaInfo;
 
 /*
- 功能：下载结束回调。
- 回调数据：AliyunDownloadMediaInfo
- */
+  功能：调用stop结束下载时回调。
+  回调数据：AliyunDownloadMediaInfo
+  */
 -(void) onStop:(AliyunDownloadMediaInfo*)mediaInfo;
 
 /*
- 功能：下载开始回调。
- 回调数据：AliyunDownloadMediaInfo
- */
+  功能：下载完成回调。
+  回调数据：AliyunDownloadMediaInfo
+  */
 -(void) onCompletion:(AliyunDownloadMediaInfo*)mediaInfo;
 
 /*
- 功能：改变加密图，重新加密之前视频文件进度。
- 回调数据：progress进度
- */
+  功能：改变加密文件（调用changeEncryptFile时回调）。
+  回调数据：重新加密之前视频文件进度
+  */
 -(void) onChangeEncryptFileProgress:(int)progress;
 
+
 /*
- 功能：改变加密图回调。
- */
+  功能：改变加密文件后老的加密视频重新加密完成时回调。加密完成后注意删除老的加密文件。
+  */
 -(void) onChangeEncryptFileComplete;
 
 /*
- 功能：下载结束回调。错误码与错误信息见下表
- 回调数据：AliyunDownloadMediaInfo， code：错误码 msg：错误信息
- */
+  功能：错误回调。错误码与错误信息详见文档。
+  回调数据：AliyunDownloadMediaInfo， code：错误码 msg：错误信息
+  */
 -(void)onError:(AliyunDownloadMediaInfo*)mediaInfo code:(int)code msg:(NSString *)msg;
 
 @end
@@ -118,17 +145,18 @@
 -(void)setMaxDownloadOperationCount:(int)count;
 
 /*
- 功能：设置加密图
- 参数：encrptyFile,加密图的参数
- */
+  功能：设置加密文件
+  参数：encrptyFile为加密文件路径
+  */
 -(void)setEncrptyFile:(NSString*)encrptyFile;
 
+
 /*
- 功能：改变加密图
- 参数：oldEncrptyFile,老的加密图
- 参数：newEncryptFile,新的加密图
- 参数：mp4Files,需要转换的文件列表
- */
+  功能：改变加密文件，主要场景是新版本要升级加密文件，对于老版本已经下载的加密视频文件需要重新加密才能播放。
+  参数：oldEncrptyFile,老的加密文件
+  参数：newEncryptFile,新的加密文件
+  参数：mp4Files,需要转换的文件列表
+  */
 -(int)changeEncryptFile:(NSString*)oldEncrptyFile newEncryptFile:(NSString*)newEncryptFile mp4Files:(NSArray*)mp4Files;
 
 /*

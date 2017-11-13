@@ -55,12 +55,41 @@
  */
 @property (nonatomic, getter=isPrintLog,assign) BOOL printLog;
 
-/**
- * 功能：是否支持view随屏幕旋转。内部是监听屏幕旋转通知；yes：接收通知不改变原有frame；no：更新view是否全屏。默认no。
- */
+/*
+ *************************************************
+ 可参考UI播放器Demo中的使用！可参考UI播放器Demo中的使用！可参考UI播放器Demo中的使用！
+ *************************************************
+isLockScreen 会锁定，播放器界面尺寸。
+isLockPortrait yes：竖屏全屏；no：横屏全屏;
+isLockScreen对isLockPortrait无效。
+- (void)aliyunVodPlayerView:(AliyunVodPlayerView *)playerView lockScreen:(BOOL)isLockScreen此方法在isLockPortrait==yes时，返回的islockscreen总是yes；
+isLockScreen和isLockPortrait，因为播放器时UIView，是否旋转需要配合UIViewController来控制物理旋转。
+假设：支持竖屏全屏
+self.playerView.isLockPortrait = YES;
+self.playerView.isLockScreen = NO;
+self.isLock = self.playerView.isLockScreen||self.playerView.isLockPortrait?YES:NO;
+
+支持横屏全屏
+self.playerView.isLockPortrait = NO;
+self.playerView.isLockScreen = NO;
+self.isLock = self.playerView.isLockScreen||self.playerView.isLockPortrait?YES:NO;
+
+锁定屏幕
+self.playerView.isLockPortrait = NO;
+self.playerView.isLockScreen = YES;
+self.isLock = self.playerView.isLockScreen||self.playerView.isLockPortrait?YES:NO;
+
+self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcontroller在navigationcontroller中，需要添加子类重写navigationgController中的 以下方法，根据实际情况做判定 。
+*/
 @property (nonatomic, assign)BOOL isLockScreen;
+@property (nonatomic, assign)BOOL isLockPortrait;
 
-
+/*
+ 功能：当前视频播放位置，单位为秒
+ 备注：在开始播放之后才能够获取当前播放位置。
+ */
+@property (nonatomic, readonly,assign)NSTimeInterval currentTime;
+    
 /**
  * 参数：coverUrl 图片地址。
  * 功能：封面图片。
@@ -94,12 +123,14 @@
 - (instancetype)initWithFrame:(CGRect)frame andSkin:(AliyunVodPlayerViewSkin)skin;
 
 
+
+- (void)playViewPrepareWithVid:(NSString *)vid accessKeyId:(NSString*)accessKeyId accessKeySecret:(NSString*)accessKeySecret securityToken:(NSString *)securityToken;
+
 /*
  *功能：使用vid+playauth方式播放。
  *参数：playKey 播放凭证
  vid 视频id
  *备注：本地视频播放，AliyunVodPlayerManagerDelegate在AliyunVodPlayerEventPrepareDone 状态下，某些参数无法获取（如：视频标题、清晰度）
- 建议用户最终使用方案。
  userPlayKey :1.2.0之前版本参数名称 apikey。
  
  *playauth获取方法：https://help.aliyun.com/document_detail/52881.html?spm=5176.doc52879.6.650.aQZsBR
@@ -203,6 +234,11 @@
  */
 - (void)setBrightness :(float)brightness;
 
+
+/**
+ * 功能：循环播放控制
+ */
+@property(nonatomic, readwrite)  BOOL circlePlay;
 
 /*
  功能：获取此播放器版本号

@@ -18,4 +18,3 @@ FOUNDATION_EXPORT const unsigned char AliyunVodPlayerSDKVersionString[];
 
 #import <AliyunVodPlayerSDK/AliyunVodDownLoadManager.h>
 #import <AliyunVodPlayerSDK/AliyunVodPlayer.h>
-#import <AliyunVodPlayerSDK/AliVcPlayerErrorCode.h>

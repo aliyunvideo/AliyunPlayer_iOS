@@ -4,33 +4,25 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/AliVcPlayerErrorCode.h</key>
-		<data>
-		qCAYQlDHdImYSyuByrerQmxlZPw=
-		</data>
 		<key>Headers/AliyunVodDownLoadManager.h</key>
 		<data>
-		4MQ3+lkKZAaIxTc6sl7SFmYZoLQ=
+		aSGnfB35/B4yqGUjvQWXU4CGRBw=
 		</data>
 		<key>Headers/AliyunVodPlayer.h</key>
 		<data>
-		qizPlpDpJjbZXJwZPq0mx4MXZqA=
+		MKF7b1iaPh67vfsYwZEiWF1a80s=
 		</data>
 		<key>Headers/AliyunVodPlayerDefine.h</key>
 		<data>
-		HK/FMDw+VSQGa0Palry8dSVFiE8=
+		UF6X5UHmOX3TixjqIMLlTiaQGLg=
 		</data>
 		<key>Headers/AliyunVodPlayerSDK.h</key>
 		<data>
-		/Pk1AFzrNIPGFo1Q207v1abX5Lg=
+		qqDPs0ZG+MHAfphENs2Px0KNhwE=
 		</data>
 		<key>Headers/AliyunVodPlayerVideo.h</key>
 		<data>
 		FXwMn4a+GpNn3QcUXfkAcxJDjAA=
-		</data>
-		<key>Info.plist</key>
-		<data>
-		idYdi+84M8aEhNBpIR3fdVL34jo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,59 +31,48 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/AliVcPlayerErrorCode.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			qCAYQlDHdImYSyuByrerQmxlZPw=
-			</data>
-			<key>hash2</key>
-			<data>
-			LiONo8e9Q+LsGYrtQgxL98p7nj347RIqhEKaG38/zMg=
-			</data>
-		</dict>
 		<key>Headers/AliyunVodDownLoadManager.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			4MQ3+lkKZAaIxTc6sl7SFmYZoLQ=
+			aSGnfB35/B4yqGUjvQWXU4CGRBw=
 			</data>
 			<key>hash2</key>
 			<data>
-			zZJpUYqUKqN0mmo7yRO1xznxXctea2m8m9HHIxoYP6k=
+			0a91uf5KjlF+aQXuAOfwnMaUY1eCla7vX1HpE3084yQ=
 			</data>
 		</dict>
 		<key>Headers/AliyunVodPlayer.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			qizPlpDpJjbZXJwZPq0mx4MXZqA=
+			MKF7b1iaPh67vfsYwZEiWF1a80s=
 			</data>
 			<key>hash2</key>
 			<data>
-			rHtxok1TLnwlELF1rGNU+Yw3E+F9Jf/7tbsJkEJXY80=
+			w1t2W74y+nXUEskCdun6HpGcsmhhAHHCLYyCfXlPDIU=
 			</data>
 		</dict>
 		<key>Headers/AliyunVodPlayerDefine.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			HK/FMDw+VSQGa0Palry8dSVFiE8=
+			UF6X5UHmOX3TixjqIMLlTiaQGLg=
 			</data>
 			<key>hash2</key>
 			<data>
-			cex8pWuFwDbWTBWbsL3uiji/l6e9la+xuCX4mf48jZ4=
+			XR2jwz5PK7wa590/f7+LKOj/Dk0yBhswpVZ1QHT5VFA=
 			</data>
 		</dict>
 		<key>Headers/AliyunVodPlayerSDK.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			/Pk1AFzrNIPGFo1Q207v1abX5Lg=
+			qqDPs0ZG+MHAfphENs2Px0KNhwE=
 			</data>
 			<key>hash2</key>
 			<data>
-			W5qw6oH7waFGKCMALRC5MmbPlL5170x8j7ZpijMLCDk=
+			meEbGJlbU0ciXtTnKSFbL/S1+a+V1cVpdwk5GmaJsVQ=
 			</data>
 		</dict>
 		<key>Headers/AliyunVodPlayerVideo.h</key>

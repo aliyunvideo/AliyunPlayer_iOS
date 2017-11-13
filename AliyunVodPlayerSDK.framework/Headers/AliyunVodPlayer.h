@@ -38,6 +38,11 @@
  */
 @interface AliyunVodPlayer : NSObject
 
+
+- (void)prepareWithVid:(NSString *)vid accessKeyId:(NSString*)accessKeyId accessKeySecret:(NSString*)accessKeySecret securityToken:(NSString *)securityToken;
+
+
+
 /*
  *功能：使用vid+playauth方式播放。
  *参数：vid 视频id
@@ -263,11 +268,22 @@
 @property(nonatomic, readonly)  NSTimeInterval bufferPercentage;
 
 /**
+ * 功能：循环播放控制
+ */
+@property(nonatomic, readwrite)  BOOL circlePlay;
+
+/**
  * 功能：
  * 参数：block:音频数据回调
  *
  */
 -(void) getAudioData:(void (^)(NSData *data))block;
+
+/**
+ * 功能：截取当前正在播放图像
+ *
+ */
+-(UIImage*) snapshot;
 
 /*
  功能：获取此播放器版本号 vision:3.0.0
