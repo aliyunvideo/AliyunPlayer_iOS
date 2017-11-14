@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AliyunPlayer_iOS"
-  s.version      = "1.0.9"
+  s.version      = "1.1.0"
   s.summary      = "AliyunPlayer_iOS."
   s.description  = <<-DESC
                    It's an SDK for aliyun video vodplay, which implement by Objective-C.
@@ -23,6 +23,12 @@ Pod::Spec.new do |s|
 	vodplayerview.vendored_frameworks = 'AliyunVodPlayerViewSDK.framework'
 	vodplayerview.dependency 'AliyunPlayer_iOS/AliyunVodPlayerSDK'
 	vodplayerview.resource  = 'AliyunLanguageSource.bundle','AliyunImageSource.bundle'
+  end
+	
+  s.subspec 'AliyunPlayerSDK' do |playerSDK|
+	playerSDK.vendored_frameworks = 'AliyunPlayerSDK.framework'
+	playerSDK.frameworks = 'MediaPlayer','CoreGraphics','QuartzCore','CoreVideo','OpenGLES','AVFoundation','CoreMedia','VideoToolbox','AudioToolbox'
+	playerSDK.resource = 'AliyunLanguageSource.bundle'
   end
  
   #s.ios.vendored_frameworks = 'AliyunVodPlayerSDK.framework','AliyunVodPlayerViewSDK.framework'
