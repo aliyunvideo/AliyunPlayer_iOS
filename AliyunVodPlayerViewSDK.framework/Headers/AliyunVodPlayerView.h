@@ -27,6 +27,8 @@
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView lockScreen:(BOOL)isLockScreen;
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onVideoQualityChanged:(AliyunVodPlayerVideoQuality)quality;
 
+- (void)aliyunVodPlayerView:(AliyunVodPlayerView *)playerView fullScreen:(BOOL)isFullScreen;
+
 @end
 
 /*
@@ -123,7 +125,11 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
 - (instancetype)initWithFrame:(CGRect)frame andSkin:(AliyunVodPlayerViewSkin)skin;
 
 
-
+/*
+ *功能：临时AccessKeyId、AccessKeySecret和SecurityToken：开启RAM授权，并通过STS授权系统提供的OpenAPI或SDK获取的AccessKeyId、AccessKeySecret和SecurityToken，用于播放和下载请求
+ *备注：参数明细->https://help.aliyun.com/document_detail/28788.html?spm=5176.doc28787.6.706.2G5SLS
+ *版本：3.2.0版本使用
+ */
 - (void)playViewPrepareWithVid:(NSString *)vid accessKeyId:(NSString*)accessKeyId accessKeySecret:(NSString*)accessKeySecret securityToken:(NSString *)securityToken;
 
 /*
@@ -239,6 +245,11 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  * 功能：循环播放控制
  */
 @property(nonatomic, readwrite)  BOOL circlePlay;
+
+/**
+ * 功能：截取当前正在播放图像
+ */
+-(UIImage*) snapshot;
 
 /*
  功能：获取此播放器版本号
