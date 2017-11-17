@@ -15,7 +15,7 @@
 
 ### 安装包下载及说明
 - 播放器SDK及Demo,请点击[下载](https://help.aliyun.com/document_detail/51992.html?spm=5176.doc51787.6.646.BpeBmK)
-- 
+
 ```
 arm文件夹：release版本，用于应用发布。
 arm&simulator文件夹：debug和release通用版本，用于模拟器和真机测试。
@@ -34,9 +34,7 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
 
 ## 简单使用
 
-- 基础播放器(AliyunPlayerSDK)
-
-#### [基础播放器接口说明](https://help.aliyun.com/document_detail/61899.html "基础版接口说明")
+- [基础播放器(AliyunPlayerSDK)](https://help.aliyun.com/document_detail/61899.html)
 ```
  AliVcMediaPlayer *mediaPlayer = [[AliVcMediaPlayer alloc] init];
  UIView *view =  [[UIView alloc] initWithFrame:CGRectZero];
@@ -51,9 +49,7 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
     }
 ```
 
-- 高级播放器(AliyunVodPlayerSDK)
-
-#### [高级播放器接口说明](https://help.aliyun.com/document_detail/61900.html "高级版接口说明")
+- [高级播放器(AliyunVodPlayerSDK)](https://help.aliyun.com/document_detail/61900.html)
 ```
   @property (nonatomic,strong)AliyunVodPlayer *aliplayer;
   self.aliplayer = [[AliyunVodPlayer alloc] init];
@@ -65,9 +61,7 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
   [self.aliplayer prepareWithURL:[NSURL URLWithString:@"http://player.alicdn.com/video/aliyunmedia.mp4"]];
 ```
 
-- UI播放器(AliyunVodPlayerViewSDK)
-
-#### [UI播放器接口说明](https://help.aliyun.com/document_detail/61902.html "UI版接口说明")
+- [UI播放器(AliyunVodPlayerViewSDK)](https://help.aliyun.com/document_detail/61902.html)
 ```
     CGRect frame = CGRectMake(0, self.view.frame.size.width*9/16+20, self.view.frame.size.width, self.view.frame.size.width*9/16);
     AliyunVodPlayerView *playerView =[[AliyunVodPlayerView alloc] initWithFrame:frame andSkin:AliyunVodPlayerViewSkinRed];
