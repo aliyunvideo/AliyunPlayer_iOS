@@ -1,6 +1,6 @@
-#AliyunPlayer_iOS
+# AliyunPlayer_iOS
 
-##简介
+## 简介
 - [AliyunPlayer_iOS](https://help.aliyun.com/document_detail/61905.html?spm=5176.doc61431.6.684.6Do9wB)播放器是一款在阿里云视频点播产品中使用的、基于iOS平台的多媒体视频播放SDK。依托于强大的阿里云视频平台，您可以使用该SDK快速集成视频播放的能力，开发内容丰富的iOS端移动视频应用。
 - 基础播放器(AliyunPlayerSDK)：**提供播放视频的基础能力，仅支持URL的方式播放，建议使用阿里云CDN+OSS存储或使用其他第三方服务的用户使用。
 - 高级播放器(AliyunVodPlayerSDK)：**除了具备基础播放器的所有功能外，还提供播放视频的高级能力，如视频加密、安全下载、边播边下缓存、清晰度切换等功能，建议使用阿里视频云点播和直播业务的用户使用。
@@ -26,16 +26,17 @@ AliyunImageSource.bundle: UI播放器图片库，如果集成ui播放器必须�
 AliyunVodPlayerViewSDK.framework : UI播放器动态库
 ```
 
-##Pod依赖
+## Pod依赖
 
 ```
     pod 'AliyunPlayer_iOS','~> 3.2.0'
 ```
 
-##简单使用
+## 简单使用
 
 - 基础播放器(AliyunPlayerSDK)
-####[基础播放器接口说明](https://help.aliyun.com/document_detail/61899.html "基础版接口说明")
+
+#### [基础播放器接口说明](https://help.aliyun.com/document_detail/61899.html "基础版接口说明")
 ```
  AliVcMediaPlayer *mediaPlayer = [[AliVcMediaPlayer alloc] init];
  UIView *view =  [[UIView alloc] initWithFrame:CGRectZero];
@@ -51,7 +52,8 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
 ```
 
 - 高级播放器(AliyunVodPlayerSDK)
-####[高级播放器接口说明](https://help.aliyun.com/document_detail/61900.html "高级版接口说明")
+
+#### [高级播放器接口说明](https://help.aliyun.com/document_detail/61900.html "高级版接口说明")
 ```
   @property (nonatomic,strong)AliyunVodPlayer *aliplayer;
   self.aliplayer = [[AliyunVodPlayer alloc] init];
