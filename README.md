@@ -81,6 +81,11 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
 6、使用点播上传不转码的用户，在使用vid播放时需要配合V3.1.0之后的版本使用。
 ```
 
+## 版本更新
+### 3.2.0
+第一版。
+### 3.2.1
+更新bundle库，simular->release,解决打包ipa问题。
 
 
 
