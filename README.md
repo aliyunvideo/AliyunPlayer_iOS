@@ -85,17 +85,81 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
 ### 3.2.0
 第一版。
 ### 3.2.1
-更新bundle库，simular->release,解决打包ipa问题。
+更新AliyunLanguageSource.bundle、AliyunImageSource.bundle ，simular->release,解决打包ipa问题。
+
+## 常见问题
+
+### 1.build提示编译错误。
+```
+dyld: Library not loaded: @rpath/AliyunPlayerSDK.framework/AliyunPlayerSDK
+  Referenced from: /private/var/containers/Bundle/Application/02753F5B-EFAD-40C3-AD5E-EC77C16E2100/zbzhixue.app/Frameworks/AliyunVodPlayerSDK.framework/AliyunVodPlayerSDK
+  Reason: image not found
+```
+
+>解决方案：AliyunVodPlayer(高级播放器)是依赖与 AliyunPlayerSDK(基础播放器)支持，所以项目中 targets -> Build Phases -> Link Binary With Libraries 中需要引入AliyunPlayerSDK.framework、AliyunVodPlayer.framework俩个动态库。
+
+### 2.后台下载功能
+
+```
+实现app进入后台，继续下载视频功能。
+```
+>解决方案：</br>1.设置
+ UIBackgroundTaskIdentifier taskId;
+ 2.循环启动-休眠
+ -(void)applicationDidEnterBackground:(UIApplication *)application {
+ //    需要后台下载打开
+ taskId = [application beginBackgroundTaskWithExpirationHandler:^{
+ [application endBackgroundTask:taskId];
+ }];
+ 3.resignActiveDemo 继续下载 ，调用 [[AliyunVodDownLoadManager shareManager] startDownloadMedia:model];
+ //下载数据部分。DownloadViewController单例。
+ //         [[DownloadViewController sharedViewController] resignActiveDemo];
+ }
+
+### 3. Push界面跳转对UI播放器旋转产生的影响
+```
+假设：UINavigationController下 A、B、C 三个界面，
+A界面是空界面
+B界面增加对旋转设定。
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+return toInterfaceOrientation = UIInterfaceOrientationPortrait;
+}
+- (BOOL)shouldAutorotate{
+return NO;
+}
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
+return UIInterfaceOrientationMaskPortrait;
+}
+
+C中包含有UI播放器的UIViewController,如图3.0.1、3.0.2
+
+当B push C，会对C界面的横屏旋转产生影响，使UI播放器无法旋转。
 
 
+```
+[3.0.1](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/51802/cn_zh/1511258771647/101.png)
+[3.0.2](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/51802/cn_zh/1511258796532/102.png)
 
 
+>解决方案：创建UINavigationController+autorotate.h 分类，重写旋转方法， 此方案需要根据具体需求来实现。</br>#import "UINavigationController+autorotate.h"
+@implementation UINavigationController (autorotate)
+-(BOOL)shouldAutorotate {
+return [[self.viewControllers lastObject] shouldAutorotate];
+}
+-(NSUInteger)supportedInterfaceOrientations {
+return [[self.viewControllers lastObject] supportedInterfaceOrientations];
+}
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+return [[self.viewControllers lastObject] preferredInterfaceOrientationForPresentation];
+}
+@end
 
 
-
-
-
-
+###  4.播放相册中视频
+```
+播放iphone手机相册中的视频
+```
+>解决方案：支持HLS、MP4等主流媒体播放格式， 对于手机相册中视频格式MOV也是支持的，但是对于路径访问受限，所以无法播放。
 
 
 
