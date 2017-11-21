@@ -29,7 +29,7 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
 ## Pod依赖
 
 ```
-    pod 'AliyunPlayer_iOS','~> 3.2.0'
+    pod 'AliyunPlayer_iOS'
 ```
 
 ## 简单使用
@@ -85,7 +85,7 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
 ### 3.2.0
 第一版。
 ### 3.2.1
-更新AliyunLanguageSource.bundle、AliyunImageSource.bundle ，simular->release,解决打包ipa问题。
+更新AliyunLanguageSource.bundle、AliyunImageSource.bundle ，simular->release,解决App Store上架问题。
 
 ## 常见问题
 
@@ -105,12 +105,14 @@ dyld: Library not loaded: @rpath/AliyunPlayerSDK.framework/AliyunPlayerSDK
 ```
 >解决方案：</br>1.设置
  UIBackgroundTaskIdentifier taskId;
+ 
  2.循环启动-休眠
  -(void)applicationDidEnterBackground:(UIApplication *)application {
  //    需要后台下载打开
  taskId = [application beginBackgroundTaskWithExpirationHandler:^{
  [application endBackgroundTask:taskId];
  }];
+ 
  3.resignActiveDemo 继续下载 ，调用 [[AliyunVodDownLoadManager shareManager] startDownloadMedia:model];
  //下载数据部分。DownloadViewController单例。
  //         [[DownloadViewController sharedViewController] resignActiveDemo];
@@ -142,13 +144,17 @@ C中包含有UI播放器的UIViewController,如图3.0.1、3.0.2
 
 
 >解决方案：创建UINavigationController+autorotate.h 分类，重写旋转方法， 此方案需要根据具体需求来实现。</br>#import "UINavigationController+autorotate.h"
+
 @implementation UINavigationController (autorotate)
+
 -(BOOL)shouldAutorotate {
 return [[self.viewControllers lastObject] shouldAutorotate];
 }
+
 -(NSUInteger)supportedInterfaceOrientations {
 return [[self.viewControllers lastObject] supportedInterfaceOrientations];
 }
+
 -(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
 return [[self.viewControllers lastObject] preferredInterfaceOrientationForPresentation];
 }
