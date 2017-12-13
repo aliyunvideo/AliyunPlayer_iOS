@@ -46,7 +46,7 @@ enum{
     ALIVC_ERR_NO_VIEW                               = 4022,     //没有设置显示窗口，请先设置播放视图
     ALIVC_ERR_NO_MEMORY                             = 4023,     //内存不足
     
-    ALIVC_ERR_FUNCTION_DENIED                       = 4024,     //系统权限被拒绝或没有经过授权
+//    ALIVC_ERR_FUNCTION_DENIED                       = 4024,     //系统权限被拒绝或没有经过授权
     ALIVC_ERR_DOWNLOAD_NO_NETWORK                   = 4101,     //视频下载时连接不到服务器
     ALIVC_ERR_DOWNLOAD_NETWORK_TIMEOUT              = 4102,     //视频下载时网络超时
     ALIVC_ERR_DOWNLOAD_QEQUEST_SAAS_SERVER_ERROR    = 4103,     //请求saas服务器错误

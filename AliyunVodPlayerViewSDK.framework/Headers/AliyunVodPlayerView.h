@@ -19,15 +19,42 @@
  * 功能：返回按钮事件
  */
 - (void)onBackViewClickWithAliyunVodPlayerView:(AliyunVodPlayerView*)playerView;
+/**
+ * 功能：暂停事件
+ */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onPause:(NSTimeInterval)currentPlayTime;
+/**
+ * 功能：继续事件
+ */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onResume:(NSTimeInterval)currentPlayTime;
+/**
+ * 功能：播放完成事件 ，请区别stop（停止播放）
+ */
+- (void)onFinishWithAliyunVodPlayerView:(AliyunVodPlayerView*)playerView;
+/**
+ * 功能：停止播放
+ */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onStop:(NSTimeInterval)currentPlayTime;
+/**
+ * 功能：拖动进度条结束事件
+ */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onSeekDone:(NSTimeInterval)seekDoneTime;
-
+/**
+ * 功能：是否锁屏
+ */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView lockScreen:(BOOL)isLockScreen;
+/**
+ * 功能：切换后的清晰度
+ */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onVideoQualityChanged:(AliyunVodPlayerVideoQuality)quality;
-
+/**
+ * 功能：返回调用全屏
+ */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView *)playerView fullScreen:(BOOL)isFullScreen;
+/**
+ * 功能：循环播放开始
+ */
+- (void)onCircleStartWithVodPlayerView:(AliyunVodPlayerView *)playerView;
 
 @end
 
@@ -86,6 +113,19 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
 @property (nonatomic, assign)BOOL isLockScreen;
 @property (nonatomic, assign)BOOL isLockPortrait;
 
+/**
+ * 功能：设置/获取清晰度，用来切换视频清晰度
+ * 播放器的清晰度有: AliyunVodPlayerVideoFD,            // 流畅
+ AliyunVodPlayerVideoLD,            // 标清
+ AliyunVodPlayerVideoSD,            // 高清
+ AliyunVodPlayerVideoHD,            // 超清
+ AliyunVodPlayerVideo2K,            // 2K
+ AliyunVodPlayerVideo4K,            // 4K
+ AliyunVodPlayerVideoOD,            // 原始
+ 
+ * 备注：可提前设置播放所选清晰度，默认播放最高清晰度。
+ */
+@property (nonatomic, assign)AliyunVodPlayerVideoQuality quality;
 /*
  功能：当前视频播放位置，单位为秒
  备注：在开始播放之后才能够获取当前播放位置。
@@ -240,6 +280,17 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  */
 - (void)setBrightness :(float)brightness;
 
+/**
+ * 功能：
+ * 参数：设置渲染视图角度
+ */
+-(void) setRenderRotate:(RenderRotate)rotate;
+
+/**
+ * 功能：
+ * 参数：设置渲染镜像
+ */
+-(void) setRenderMirrorMode:(RenderMirrorMode)mirrorMode;
 
 /**
  * 功能：循环播放控制

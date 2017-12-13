@@ -18,10 +18,7 @@
 
 #import <Foundation/Foundation.h> 
 #import <UIKit/UIKit.h>
-
 #import "AliVcPlayerDefine.h"
-//#import "PlayerInformationReport.h"
-//#import "InfoReportParam.h"
 /**
  * iOS媒体播放器SDK是在iOS平台上使用的软件开发工具包（Software Developement Kit），为iOS开发者提供简单易用的接口，帮助开发者实现iOS平台上的媒体播放应用开发。该SDK对目前主流的视频格式都提供了良好的支持，支持本地和网络媒体的播放，弥补了系统播放器在媒体格式上的不足。
  
@@ -282,6 +279,18 @@
  *
  */
 -(void) getAudioData:(void (^)(NSData *data))block;
+
+/**
+ * 功能：
+ * 参数：设置渲染视图角度
+ */
+-(void) setRenderRotate:(RenderRotate)rotate;
+
+/**
+ * 功能：
+ * 参数：设置渲染镜像
+ */
+-(void) setRenderMirrorMode:(RenderMirrorMode)mirrorMode;
 
 /**
  * 功能：截取当前正在播放图像

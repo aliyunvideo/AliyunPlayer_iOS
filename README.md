@@ -167,6 +167,12 @@ return [[self.viewControllers lastObject] preferredInterfaceOrientationForPresen
 ```
 >解决方案：支持HLS、MP4等主流媒体播放格式， 对于手机相册中视频格式MOV也是支持的，但是对于路径访问受限，所以无法播放。
 
+### 5.CFBundleExecutable 问题
+```
+ERROR ITMS-90535: "Unexpected CFBundleExecutable Key. The bundle at 'Payload/xxx.app/AliyunLanguageSource.bundle' does not contain a bundle executable. If this bundle intentionally does not contain an executable, consider removing the CFBundleExecutable key from its Info.plist and using a CFBundlePackageType of BNDL. If this bundle is part of a third-party framework, consider contacting the developer of the framework for an update to address this issue."
+```
+>解决方案：删除AliyunLanguageSource.bundle下，info.plist文件中的CFBundleExecutable键值对。
+
 
 
 

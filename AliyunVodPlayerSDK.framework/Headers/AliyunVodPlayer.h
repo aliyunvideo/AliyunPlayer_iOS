@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "AliyunVodPlayerVideo.h"
 #import "AliyunVodPlayerDefine.h"
+#import <AliyunPlayerSDK/AliyunPlayerSDK.h>
 
 @class AliyunVodPlayer;
 
@@ -30,6 +31,7 @@
 
 - (void)vodPlayer:(AliyunVodPlayer*)vodPlayer failSwitchToQuality:(AliyunVodPlayerVideoQuality)quality;
 
+- (void)onCircleStartWithVodPlayer:(AliyunVodPlayer*)vodPlayer;
 
 @end
 
@@ -158,6 +160,18 @@
  *      maxDuration:缓存最大视频最大长度
  */
 -(void) setPlayingCache:(BOOL)bEnabled saveDir:(NSString*)saveDir maxSize:(int64_t)maxSize maxDuration:(int)maxDuration;
+
+/**
+ * 功能：
+ * 参数：设置渲染视图角度
+ */
+-(void) setRenderRotate:(RenderRotate)rotate;
+
+/**
+ * 功能：
+ * 参数：设置渲染镜像
+ */
+-(void) setRenderMirrorMode:(RenderMirrorMode)mirrorMode;
 
 /**
  * AliyunVodPlayerManagerDelegate 播放器代理

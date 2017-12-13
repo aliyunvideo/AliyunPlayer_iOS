@@ -16,6 +16,5 @@ FOUNDATION_EXPORT const unsigned char AliyunPlayerSDKVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <AliyunPlayerSDK/PublicHeader.h>
 
-#import <AliyunPlayerSDK/AlivcMediaPlayer.h>
-
+#import <AliyunPlayerSDK/AlivcMediaPlayer.h> 
 

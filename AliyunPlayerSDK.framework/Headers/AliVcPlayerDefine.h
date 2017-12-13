@@ -48,16 +48,19 @@
     4.  播放器自动播放结束会发送AliVcMediaPlayerPlaybackDidFinishNotification通知。
     5.	调用seekTo成功后发送AliVcMediaPlayerSeekingDidFinishNotification通知。
     6.  AliVcMediaPlayerStartCachingNotification和AliVcMediaPlayerEndCachingNotification通知，这个是在网络视频缓冲数据不足以够播放后会发送此通知，一般网络视频在调用seekTo后会发送此通知。
+    7.  AliVcMediaPlayerCircleStartNotification通知，开启循环播放模式，进入循环播放开始时发送此通知。
+    8.  播放视频第一帧时发送此通知。
+    9.  开启循环播放功能，在进入循环播放时发送此通知。
  */
 ALIVC_EXTERN NSString * const AliVcMediaPlayerLoadDidPreparedNotification;
-ALIVC_EXTERN NSString * const AliVcMediaPlayerPlaybackDidFinishNotification;
+ALIVC_EXTERN NSString * const AliVcMediaPlayerPlaybackErrorNotification;
 ALIVC_EXTERN NSString * const AliVcMediaPlayerPlaybackStopNotification;
+ALIVC_EXTERN NSString * const AliVcMediaPlayerPlaybackDidFinishNotification;
+ALIVC_EXTERN NSString * const AliVcMediaPlayerSeekingDidFinishNotification;
 ALIVC_EXTERN NSString * const AliVcMediaPlayerStartCachingNotification;
 ALIVC_EXTERN NSString * const AliVcMediaPlayerEndCachingNotification;
-ALIVC_EXTERN NSString * const AliVcMediaPlayerPlaybackErrorNotification;
-ALIVC_EXTERN NSString * const AliVcMediaPlayerSeekingDidFinishNotification;
 ALIVC_EXTERN NSString * const AliVcMediaPlayerFirstFrameNotification;
-
+ALIVC_EXTERN NSString * const AliVcMediaPlayerCircleStartNotification;
 
 /**
  *  播放器媒体类型
@@ -80,6 +83,27 @@ enum {
     scalingModeAspectFitWithCropping = 1,
 };
 typedef NSInteger ScalingMode;
+
+/**
+ * 渲染旋转角度设置
+ */
+enum {
+    renderRotate0 = 0,
+    renderRotate90 = 90,
+    renderRotate180 = 180,
+    renderRotate270 = 270,
+};
+typedef NSInteger RenderRotate;
+
+/**
+ * 渲染镜像设置
+ */
+enum {
+    renderMirrorModeNone = 0,
+    renderMirrorHorizonMode,
+    renderMirrorVerticalMode,
+};
+typedef NSInteger RenderMirrorMode;
 
 
 //调试信息的key指，用于接口getAllDebugInfo信息返回值的dictionary的key的值
