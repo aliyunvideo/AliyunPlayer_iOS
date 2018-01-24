@@ -87,6 +87,10 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
 ### 3.2.1
 更新AliyunLanguageSource.bundle、AliyunImageSource.bundle ，simular->release,解决App Store上架问题。
 
+### 3.3.3
+优化更新。
+
+
 ## 常见问题
 
 ### 1.build提示编译错误。

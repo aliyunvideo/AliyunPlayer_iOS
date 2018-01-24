@@ -1,4 +1,4 @@
- #ifndef __KERNEL_MPLAYER_H__
+#ifndef __KERNEL_MPLAYER_H__
 #define __KERNEL_MPLAYER_H__
 
 #include "MPlayingHandler.h"

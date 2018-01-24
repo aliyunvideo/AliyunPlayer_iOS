@@ -37,6 +37,7 @@ public:
         , MSG_PCM_DATA
 
         , MSG_CAPTURE_FRAME_DATA
+        , MSG_SEI_DATA
     };
     
     //info report type
