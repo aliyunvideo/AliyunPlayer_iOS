@@ -213,6 +213,11 @@
 @property(nonatomic, readwrite)  BOOL muteMode;
 
 /**
+ * 功能：设置stop或者播放结束后是否保留显示最后一帧,默认YES显示
+ */
+@property(nonatomic, readwrite)  BOOL keepLastFrame;
+
+/**
  *  获取播放器错误代码（只读），错误代码的类型为：
  enum{
  ALIVC_ERR_INVALID_PARAM = 4001,             // 参数非法，请检查输入参数
@@ -251,7 +256,7 @@
  * 功能：控制台是否打印日志
  * 备注：YES表示打印日志，NO表示不打印
  */
-@property(nonatomic, readwrite)  BOOL printLog;
+@property(nonatomic, readwrite)  BOOL printLog; 
 
 /**
  * 功能：循环播放控制

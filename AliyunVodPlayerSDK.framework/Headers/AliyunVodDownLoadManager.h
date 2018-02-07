@@ -16,6 +16,7 @@
 @property(nonatomic,assign)AliyunVodPlayerVideoQuality  quality;
 @property(nonatomic,assign)int downloadProgress;
 @property(nonatomic,copy)NSString *downloadFilePath;
+@property(nonatomic,copy)NSString *downloadFileName;
 @property(nonatomic,assign)int64_t duration;
 @property(nonatomic,assign)int64_t size;
 @property(nonatomic,copy)NSString* format;
