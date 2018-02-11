@@ -14,6 +14,7 @@
 @property(nonatomic,copy)NSString *title;
 @property(nonatomic,copy)NSString *coverURL;
 @property(nonatomic,assign)AliyunVodPlayerVideoQuality  quality;
+@property(nonatomic,copy)NSString*  videoDefinition;
 @property(nonatomic,assign)int downloadProgress;
 @property(nonatomic,copy)NSString *downloadFilePath;
 @property(nonatomic,copy)NSString *downloadFileName;
@@ -30,20 +31,30 @@
 
 @end
 
+@interface AliyunMtsData :NSObject
+@property(nonatomic,copy)NSString *accessKeyId;
+@property(nonatomic,copy)NSString *accessKeySecret;
+@property(nonatomic,copy)NSString *securityToken;
+@property(nonatomic,copy)NSString *authInfo;
+@property(nonatomic,copy)NSString *region;
+@property(nonatomic,copy)NSString *playDomain;
+@property(nonatomic,copy)NSString *mtsHlsUriToken;
+@end
+
 @interface AliyunDataSource : NSObject
 
 @property (nonatomic,assign)AliyunVodRequestMethod requestMethod;
 @property(nonatomic,copy)NSString *vid;
 @property(nonatomic,copy)NSString *playAuth;
 @property(nonatomic,assign)AliyunVodPlayerVideoQuality quality;
+@property(nonatomic,copy)NSString*  videoDefinition;
 @property(nonatomic,copy)NSString *format;
 
 @property(nonatomic,strong)AliyunStsData *stsData;
 
+@property(nonatomic,strong)AliyunMtsData *mtsData;
+
 @end
-
-
-
 
 @class AliyunVodDownLoadManager;
 
@@ -58,17 +69,30 @@
 
 /*
   功能：开始下载后收到回调，更新最新的playAuth。主要场景是开始多个下载时，等待下载的任务自动开始下载后，playAuth有可能已经过期了，需通过此回调更新
+  参数：返回当前数据
+  返回：使用代理方法，设置playauth来更新数据。
   */
--(NSString*) onGetPlayAuth:(NSString*)vid format:(NSString*)format quality:(AliyunVodPlayerVideoQuality)quality;
+-(NSString*)onGetPlayAuth:(NSString*)vid format:(NSString*)format quality:(AliyunVodPlayerVideoQuality)quality;
 
 
 /*
   功能：开始下载后收到回调，更新最新的stsData。主要场景是开始多个下载时，等待下载的任务自动开始下载后，stsData有可能已经过期了，需通过此回调更新
+ 参数：返回当前数据
+ 返回：使用代理方法，设置AliyunStsData来更新数据。
  */
-- (void)onGetAliyunStsData:(AliyunStsData*)stsData
-                   videoID:(NSString *)videoID
-                    format:(NSString*)format
-                   quality:(AliyunVodPlayerVideoQuality)quality;
+- (AliyunStsData*)onGetAliyunStsData:(NSString *)videoID
+                              format:(NSString*)format
+                             quality:(AliyunVodPlayerVideoQuality)quality;
+
+/*
+  功能：开始下载后收到回调，更新最新的MtsData。主要场景是开始多个下载时，等待下载的任务自动开始下载后，MtsData有可能已经过期了，需通过此回调更新
+ 参数：返回当前数据
+ 返回：使用代理方法，设置AliyunMtsData来更新数据。
+ */
+- (AliyunMtsData*)onGetAliyunMtsData:(NSString *)videoID
+                              format:(NSString*)format
+                             quality:(NSString *)quality;
+
 
 
 /*
@@ -126,6 +150,8 @@
 
 @property(nonatomic,weak)id<AliyunVodDownLoadDelegate>downloadDelegate;
 
+//log打印
+@property(nonatomic, assign) BOOL printLog;
           
 /*
  功能：获取下载器

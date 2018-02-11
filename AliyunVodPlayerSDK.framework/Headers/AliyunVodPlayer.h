@@ -21,17 +21,34 @@
  */
 @protocol AliyunVodPlayerDelegate <NSObject>
 
+@required
+
 - (void)vodPlayer:(AliyunVodPlayer *)vodPlayer onEventCallback:(AliyunVodPlayerEvent)event ;
 
 - (void)vodPlayer:(AliyunVodPlayer *)vodPlayer playBackErrorModel:(ALPlayerVideoErrorModel *)errorModel;
 
-- (void)vodPlayer:(AliyunVodPlayer*)vodPlayer willSwitchToQuality:(AliyunVodPlayerVideoQuality)quality;
+@optional
 
-- (void)vodPlayer:(AliyunVodPlayer *)vodPlayer didSwitchToQuality:(AliyunVodPlayerVideoQuality)quality;
+- (void)vodPlayer:(AliyunVodPlayer*)vodPlayer willSwitchToQuality:(AliyunVodPlayerVideoQuality)quality videoDefinition:(NSString*)videoDefinition;
 
-- (void)vodPlayer:(AliyunVodPlayer*)vodPlayer failSwitchToQuality:(AliyunVodPlayerVideoQuality)quality;
+- (void)vodPlayer:(AliyunVodPlayer *)vodPlayer didSwitchToQuality:(AliyunVodPlayerVideoQuality)quality videoDefinition:(NSString*)videoDefinition;
+
+- (void)vodPlayer:(AliyunVodPlayer*)vodPlayer failSwitchToQuality:(AliyunVodPlayerVideoQuality)quality videoDefinition:(NSString*)videoDefinition;
 
 - (void)onCircleStartWithVodPlayer:(AliyunVodPlayer*)vodPlayer;
+/*
+ *功能：播放器鉴权数据过期。
+ */
+- (void)onTimeExpiredErrorWithVodPlayer:(AliyunVodPlayer *)vodPlayer;
+
+/*
+ *功能：播放地址存在过期时间，此时播放地址过期时提供的回调消息
+ *参数：videoid：过期时播放的videoId
+ *参数：quality：过期时播放的清晰度，playauth播放方式和STS播放方式有效。
+ *参数：videoDefinition：过期时播放的清晰度，MTS播放方式时有效。
+ */
+- (void)vodPlayerPlaybackAddressExpiredWithVideoId:(NSString *)videoId quality:(AliyunVodPlayerVideoQuality)quality videoDefinition:(NSString*)videoDefinition;
+
 
 @end
 
@@ -39,6 +56,7 @@
  * ALPlayerManager为播放器管理类，实现播放器的各种控制
  */
 @interface AliyunVodPlayer : NSObject
+
 
 /*
  *功能：临时AccessKeyId、AccessKeySecret和SecurityToken：开启RAM授权，并通过STS授权系统提供的OpenAPI或SDK获取的AccessKeyId、AccessKeySecret和SecurityToken，用于播放和下载请求
@@ -129,6 +147,8 @@
  功能：停止播放视频
  */
 - (void)stop;
+
+- (void)reset;
 
 /*
  功能：重播，重新播放上一次url地址视频。
@@ -257,6 +277,11 @@
  */
 @property (nonatomic, assign) AliyunVodPlayerVideoQuality quality;
 
+/**
+ * 功能：设置/获取清晰度，用来切换视频清晰度
+ * 备注：在播放之后才能调用
+ */
+@property (nonatomic, assign) NSString* videoDefinition;
 
 /**
  * 功能：设置倍数播放值
@@ -314,4 +339,30 @@
 @property(nonatomic) id userData;
 
 
+/**
+ * 功能：当直播时，缓冲区数据大于dropBufferDuration时开始丢数据，单位毫秒，默认8000毫秒
+ * 备注：必须大于一个GOP的长度。
+ */
+@property(nonatomic, readwrite) int dropBufferDuration;
+
+
+
+/*
+ *直播接口
+ */
+//直播时间
+@property (nonatomic, assign) NSTimeInterval liveTime;
+//播放时间
+@property (nonatomic, assign) NSTimeInterval currentPlayTime;
+//每60秒更新用户时移时间
+@property (nonatomic, strong) ALPlayerVideoTimeShiftModel *timeShiftModel;
+
+- (void)prepareWithLiveTimeUrl:(NSURL *)liveTimeUrl;
+
+- (void)setLiveTimeShiftUrl:(NSString*)liveTimeShiftUrl;
+
+- (void)seekToLiveTime:(NSTimeInterval)startTime;
+
+
 @end
+

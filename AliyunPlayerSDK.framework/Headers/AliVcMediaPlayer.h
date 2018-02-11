@@ -298,6 +298,16 @@
 -(void) setRenderMirrorMode:(RenderMirrorMode)mirrorMode;
 
 /**
+ * 功能：设置边播边缓存功能
+ * 参数：bEnabled:是否开启缓存功能
+ *      saveDir:缓存存储的路径
+ *      maxSize:缓存路径最大空间
+ *      maxDuration:缓存最大视频最大长度
+ */
+-(void) setPlayingCache:(BOOL)bEnabled saveDir:(NSString*)saveDir maxSize:(int64_t)maxSize maxDuration:(int)maxDuration;
+
+
+/**
  * 功能：截取当前正在播放图像
  *
  */

@@ -47,6 +47,12 @@
  * 功能：切换后的清晰度
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onVideoQualityChanged:(AliyunVodPlayerVideoQuality)quality;
+
+/**
+ * 功能：切换后的清晰度，清晰度非枚举类型，字符串，适应于MTS播放
+ */
+- (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onVideoDefinitionChanged:(NSString*)videoDefinition;
+
 /**
  * 功能：返回调用全屏
  */
@@ -126,6 +132,13 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  * 备注：可提前设置播放所选清晰度，默认播放最高清晰度。
  */
 @property (nonatomic, assign)AliyunVodPlayerVideoQuality quality;
+
+/**
+ * 功能：设置/获取清晰度，用来切换视频清晰度，非枚举类型，MTS播放
+ * 备注：在播放之后才能调用
+ */
+@property (nonatomic, assign) NSString* videoDefinition;
+
 /*
  功能：当前视频播放位置，单位为秒
  备注：在开始播放之后才能够获取当前播放位置。
@@ -253,6 +266,10 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  */
 - (void)replay;
 
+/*
+ 功能：停止播放销毁图层
+ */
+- (void)reset;
 /*
  功能：释放播放器
  */

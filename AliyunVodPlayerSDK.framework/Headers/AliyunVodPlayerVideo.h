@@ -40,6 +40,11 @@
 @property (nonatomic, assign)AliyunVodPlayerVideoQuality videoQuality;
 
 /*
+ videoQuality为视频清晰度，非枚举类型
+ */
+@property (nonatomic,copy)NSString *videoDefinition;
+
+/*
  所有清晰度
  */
 @property (nonatomic ,strong)NSArray *allSupportQualitys;
@@ -63,6 +68,13 @@
 @end
 
 
+@interface ALPlayerVideoTimeShiftModel : NSObject
+@property (nonatomic, assign) NSTimeInterval startTime;
+@property (nonatomic, assign) NSTimeInterval endTime;
+@property (nonatomic, assign) NSTimeInterval currentTime;
+
+
+@end
 
 
 

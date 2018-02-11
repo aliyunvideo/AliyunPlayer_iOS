@@ -37,8 +37,8 @@ typedef NS_ENUM(int, AliyunVodPlayerDisplayMode) {  //浏览方式
 typedef NS_ENUM(int , AliyunVodRequestMethod) {
     AliyunVodRequestMethodPlayAuth = 0,
     AliyunVodRequestMethodStsToken,
+    AliyunVodRequestMethodMtsToken,
 };
-
 
 typedef NS_ENUM(int, AliyunVodPlayerState) {  //视频状态
     AliyunVodPlayerStateIdle = 0,           //空转，闲时，静态
