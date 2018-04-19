@@ -7,7 +7,7 @@
 //
 
 
-typedef NS_ENUM(int, AliyunVodPlayerVideoQuality) { //视频质量
+typedef NS_ENUM(NSUInteger, AliyunVodPlayerVideoQuality) { //视频质量
     AliyunVodPlayerVideoFD = 0,        // 流畅
     AliyunVodPlayerVideoLD,            // 标清
     AliyunVodPlayerVideoSD,            // 高清
@@ -17,8 +17,8 @@ typedef NS_ENUM(int, AliyunVodPlayerVideoQuality) { //视频质量
     AliyunVodPlayerVideoOD,            // 原画
 };
 
-typedef NS_ENUM(int, AliyunVodPlayerEvent) {       //视频事件回馈
-    AliyunVodPlayerEventPrepareDone,
+typedef NS_ENUM(NSUInteger, AliyunVodPlayerEvent) {       //视频事件回馈
+    AliyunVodPlayerEventPrepareDone = 0,
     AliyunVodPlayerEventPlay,
     AliyunVodPlayerEventFirstFrame,
     AliyunVodPlayerEventPause,
@@ -29,18 +29,18 @@ typedef NS_ENUM(int, AliyunVodPlayerEvent) {       //视频事件回馈
     AliyunVodPlayerEventSeekDone
 };
 
-typedef NS_ENUM(int, AliyunVodPlayerDisplayMode) {  //浏览方式
+typedef NS_ENUM(NSUInteger, AliyunVodPlayerDisplayMode) {  //浏览方式
     AliyunVodPlayerDisplayModeFit = 0,            // 保持原始比例
     AliyunVodPlayerDisplayModeFitWithCropping // 全屏占满屏幕
 };
 
-typedef NS_ENUM(int , AliyunVodRequestMethod) {
+typedef NS_ENUM(NSUInteger , AliyunVodRequestMethod) {
     AliyunVodRequestMethodPlayAuth = 0,
     AliyunVodRequestMethodStsToken,
     AliyunVodRequestMethodMtsToken,
 };
 
-typedef NS_ENUM(int, AliyunVodPlayerState) {  //视频状态
+typedef NS_ENUM(NSUInteger, AliyunVodPlayerState) {  //视频状态
     AliyunVodPlayerStateIdle = 0,           //空转，闲时，静态
     AliyunVodPlayerStateError,              //错误
     AliyunVodPlayerStatePrepared,           //已准备好

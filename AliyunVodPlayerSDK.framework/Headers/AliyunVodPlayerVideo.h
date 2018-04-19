@@ -32,43 +32,42 @@
 /*
  coverUrl为视频封面
  */
-@property (nonatomic,copy)NSString *coverUrl;
+@property (nonatomic,copy) NSString *coverUrl;
 
 /*
  videoQuality为视频清晰度
  */
-@property (nonatomic, assign)AliyunVodPlayerVideoQuality videoQuality;
+@property (nonatomic, assign) AliyunVodPlayerVideoQuality videoQuality;
 
 /*
  videoQuality为视频清晰度，非枚举类型
  */
-@property (nonatomic,copy)NSString *videoDefinition;
+@property (nonatomic, copy) NSString *videoDefinition;
 
 /*
  所有清晰度
  */
-@property (nonatomic ,strong)NSArray *allSupportQualitys;
+@property (nonatomic, strong) NSArray *allSupportQualitys;
 
 @end
 
 
-
-@interface ALPlayerVideoErrorModel : NSObject
+@interface AliyunPlayerVideoErrorModel : NSObject
 //出错的错误信息
-@property (nonatomic ,copy)NSString *errorMsg;
+@property (nonatomic, copy) NSString *errorMsg;
 //出错的错误码
-@property (nonatomic ,assign)int errorCode;
+@property (nonatomic, assign) int errorCode;
 //出错的vid
-@property (nonatomic ,copy)NSString *errorVid;
+@property (nonatomic, copy) NSString *errorVid;
 //出错的url
-@property (nonatomic ,copy)NSString *errorUrl;
+@property (nonatomic, copy) NSString *errorUrl;
 //出错的requestId
-@property (nonatomic , copy)NSString *errorRequestId;
+@property (nonatomic, copy) NSString *errorRequestId;
 
 @end
 
 
-@interface ALPlayerVideoTimeShiftModel : NSObject
+@interface AliyunPlayerVideoTimeShiftModel : NSObject
 @property (nonatomic, assign) NSTimeInterval startTime;
 @property (nonatomic, assign) NSTimeInterval endTime;
 @property (nonatomic, assign) NSTimeInterval currentTime;

@@ -42,7 +42,6 @@
 @end
 
 @interface AliyunDataSource : NSObject
-
 @property (nonatomic,assign)AliyunVodRequestMethod requestMethod;
 @property(nonatomic,copy)NSString *vid;
 @property(nonatomic,copy)NSString *playAuth;
@@ -71,6 +70,7 @@
   功能：开始下载后收到回调，更新最新的playAuth。主要场景是开始多个下载时，等待下载的任务自动开始下载后，playAuth有可能已经过期了，需通过此回调更新
   参数：返回当前数据
   返回：使用代理方法，设置playauth来更新数据。
+  备注：如通过请求数据来获取playAuth，请使用同步方法。此代理方法在其他线程里，不会存在卡线程问题。
   */
 -(NSString*)onGetPlayAuth:(NSString*)vid format:(NSString*)format quality:(AliyunVodPlayerVideoQuality)quality;
 
@@ -79,6 +79,7 @@
   功能：开始下载后收到回调，更新最新的stsData。主要场景是开始多个下载时，等待下载的任务自动开始下载后，stsData有可能已经过期了，需通过此回调更新
  参数：返回当前数据
  返回：使用代理方法，设置AliyunStsData来更新数据。
+ 备注：如通过请求数据来获取stsData，请使用同步方法。此代理方法在其他线程里，不会存在卡线程问题。
  */
 - (AliyunStsData*)onGetAliyunStsData:(NSString *)videoID
                               format:(NSString*)format
@@ -88,6 +89,7 @@
   功能：开始下载后收到回调，更新最新的MtsData。主要场景是开始多个下载时，等待下载的任务自动开始下载后，MtsData有可能已经过期了，需通过此回调更新
  参数：返回当前数据
  返回：使用代理方法，设置AliyunMtsData来更新数据。
+ 备注：如通过请求数据来获取mtsData，请使用同步方法。此代理方法在其他线程里，不会存在卡线程问题。
  */
 - (AliyunMtsData*)onGetAliyunMtsData:(NSString *)videoID
                               format:(NSString*)format

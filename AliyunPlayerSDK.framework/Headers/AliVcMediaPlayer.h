@@ -306,16 +306,15 @@
  */
 -(void) setPlayingCache:(BOOL)bEnabled saveDir:(NSString*)saveDir maxSize:(int64_t)maxSize maxDuration:(int)maxDuration;
 
+/*
+ * 设置referer
+ */
+- (void)setReferer:(NSString *)referer;
 
 /**
  * 功能：截取当前正在播放图像
  *
  */
 -(UIImage*) snapshot;
-
-/**
- * 功能：用来记录用户相关数据
- */
-@property(nonatomic) id userData;
 
 @end

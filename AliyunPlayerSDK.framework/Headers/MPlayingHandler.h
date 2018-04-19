@@ -14,7 +14,8 @@ typedef enum _mp_status_t{
     E_MP_INVALID_OPERATE,  //function invoke order wrong probably
 
     E_MP_OUTOFMEM,   //out of memory
-    E_MP_INVALID_ARGS //invalid argumets
+    E_MP_INVALID_ARGS,//invalid argumets
+    E_MP_CANCELED,
 } mp_status_t;
 
 class IMPlayerHandler{

@@ -17,35 +17,60 @@
 
 /**
  * 功能：播放事件协议方法
- * 参数：videoModel 不同 event 事件，model中的数据不同。
  */
 @protocol AliyunVodPlayerDelegate <NSObject>
 
 @required
-
+/**
+ * 功能：播放事件协议方法,主要内容 AliyunVodPlayerEventPrepareDone状态下，此时获取到播放视频数据（时长、当前播放数据、视频宽高等）
+ * 参数：event 视频事件
+ */
 - (void)vodPlayer:(AliyunVodPlayer *)vodPlayer onEventCallback:(AliyunVodPlayerEvent)event ;
 
-- (void)vodPlayer:(AliyunVodPlayer *)vodPlayer playBackErrorModel:(ALPlayerVideoErrorModel *)errorModel;
+/**
+ * 功能：播放器播放时发生错误时，回调信息
+ * 参数：errorModel 播放器报错时提供的错误信息对象
+ */
+- (void)vodPlayer:(AliyunVodPlayer *)vodPlayer playBackErrorModel:(AliyunPlayerVideoErrorModel *)errorModel;
 
 @optional
 
+/**
+ * 功能：播放器播放即将切换清晰度时
+ * 参数：quality ： vid+playauth播放方式、vid+sts播放方式时的清晰度
+        videoDefinition ： 媒体转码播放方式的清晰度
+ */
 - (void)vodPlayer:(AliyunVodPlayer*)vodPlayer willSwitchToQuality:(AliyunVodPlayerVideoQuality)quality videoDefinition:(NSString*)videoDefinition;
 
+/**
+ * 功能：播放器播放切换清晰度完成
+ * 参数：quality ： vid+playauth播放方式、vid+sts播放方式时的清晰度
+ videoDefinition ： 媒体转码播放方式的清晰度
+ */
 - (void)vodPlayer:(AliyunVodPlayer *)vodPlayer didSwitchToQuality:(AliyunVodPlayerVideoQuality)quality videoDefinition:(NSString*)videoDefinition;
 
+/**
+ * 功能：播放器播放切换清晰度失败
+ * 参数：quality ： vid+playauth播放方式、vid+sts播放方式时的清晰度
+ videoDefinition ： 媒体转码播放方式的清晰度
+ */
 - (void)vodPlayer:(AliyunVodPlayer*)vodPlayer failSwitchToQuality:(AliyunVodPlayerVideoQuality)quality videoDefinition:(NSString*)videoDefinition;
 
+/**
+ * 功能：1.播放器设置了循环播放，此代理方法才会有效。2.播放器播放完成后，开始循环播放后，此协议被调用
+ */
 - (void)onCircleStartWithVodPlayer:(AliyunVodPlayer*)vodPlayer;
+
 /*
- *功能：播放器鉴权数据过期。
+ *功能：播放器请求时，通知用户传入的参数鉴权过期。
  */
 - (void)onTimeExpiredErrorWithVodPlayer:(AliyunVodPlayer *)vodPlayer;
 
 /*
- *功能：播放地址存在过期时间，此时播放地址过期时提供的回调消息
- *参数：videoid：过期时播放的videoId
- *参数：quality：过期时播放的清晰度，playauth播放方式和STS播放方式有效。
- *参数：videoDefinition：过期时播放的清晰度，MTS播放方式时有效。
+ *功能：播放地址将要过期时，提示用户当前播放地址过期。 （策略：当前播放器地址过期时间2小时，我们在播放地址差1分钟过期时提供回调；（7200-60）秒时发送）
+ *参数：videoid：将过期时播放的videoId
+ *参数：quality：将过期时播放的清晰度，playauth播放方式和STS播放方式有效。
+ *参数：videoDefinition：将过期时播放的清晰度，MPS播放方式时有效。
  */
 - (void)vodPlayerPlaybackAddressExpiredWithVideoId:(NSString *)videoId quality:(AliyunVodPlayerVideoQuality)quality videoDefinition:(NSString*)videoDefinition;
 
@@ -57,13 +82,20 @@
  */
 @interface AliyunVodPlayer : NSObject
 
+/*
+ *功能：防盗链参数
+ */
+@property (nonatomic, copy) NSString *referer;
 
 /*
  *功能：临时AccessKeyId、AccessKeySecret和SecurityToken：开启RAM授权，并通过STS授权系统提供的OpenAPI或SDK获取的AccessKeyId、AccessKeySecret和SecurityToken，用于播放和下载请求
  *备注：参数明细->https://help.aliyun.com/document_detail/28788.html?spm=5176.doc28787.6.706.2G5SLS
  *版本：3.2.0版本使用
  */
-- (void)prepareWithVid:(NSString *)vid accessKeyId:(NSString*)accessKeyId accessKeySecret:(NSString*)accessKeySecret securityToken:(NSString *)securityToken;
+- (void)prepareWithVid:(NSString *)vid
+           accessKeyId:(NSString *)accessKeyId
+       accessKeySecret:(NSString *)accessKeySecret
+         securityToken:(NSString *)securityToken;
 
 
 
@@ -85,7 +117,8 @@
       在播放器SDK中使用获取的PlayAuth和VideoId进行播放，注意PlayAuth的时效为100秒，如果过期请重新获取。
  
  */
-- (void)prepareWithVid:(NSString *)vid playAuth:(NSString *)playAuth;
+- (void)prepareWithVid:(NSString *)vid
+              playAuth:(NSString *)playAuth;
 
 /*
  *功能：视频转码服务用户使用播放方式
@@ -148,6 +181,10 @@
  */
 - (void)stop;
 
+/**
+ * 功能：重置播放器，其目的是将播放器所有状态恢复到最初位置，当播放器内部出现错误或其它问题时，调用此函数来进行恢复。
+ * 备注：该函数和stop函数的区别是，reset也能够实现stop的功能，但是reset会去销毁播放器内部的各种变量，然后重新进行变量初始化，view变量等会被设置成空。
+ */
 - (void)reset;
 
 /*
@@ -175,9 +212,9 @@
 /**
  * 功能：设置边播边缓存功能
  * 参数：bEnabled:是否开启缓存功能
- *      saveDir:缓存存储的路径
- *      maxSize:缓存路径最大空间
- *      maxDuration:缓存最大视频最大长度
+ *      saveDir:缓存存储的路径   
+ *      maxSize:缓存路径最大空间         单位：MB
+ *      maxDuration:缓存最大视频最大长度  单位 ： 秒
  */
 -(void) setPlayingCache:(BOOL)bEnabled saveDir:(NSString*)saveDir maxSize:(int64_t)maxSize maxDuration:(int)maxDuration;
 
@@ -334,12 +371,6 @@
 - (NSString*) getSDKVersion;
 
 /**
- * 功能：用来记录用户相关数据
- */
-@property(nonatomic) id userData;
-
-
-/**
  * 功能：当直播时，缓冲区数据大于dropBufferDuration时开始丢数据，单位毫秒，默认8000毫秒
  * 备注：必须大于一个GOP的长度。
  */
@@ -355,7 +386,7 @@
 //播放时间
 @property (nonatomic, assign) NSTimeInterval currentPlayTime;
 //每60秒更新用户时移时间
-@property (nonatomic, strong) ALPlayerVideoTimeShiftModel *timeShiftModel;
+@property (nonatomic, strong) AliyunPlayerVideoTimeShiftModel *timeShiftModel;
 
 - (void)prepareWithLiveTimeUrl:(NSURL *)liveTimeUrl;
 

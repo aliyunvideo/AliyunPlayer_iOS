@@ -25,4 +25,5 @@ typedef NS_ENUM (int, AliyunVodPlayerViewPlaySpeed) {
     AliyunVodPlayerViewPlaySpeedTwo
 };
 
+
 #endif /* AliyunVodPlayerViewDefine_h */

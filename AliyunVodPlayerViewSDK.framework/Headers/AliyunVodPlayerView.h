@@ -17,48 +17,68 @@
 @protocol AliyunVodPlayerViewDelegate <NSObject>
 /**
  * 功能：返回按钮事件
+ * 参数：playerView ：AliyunVodPlayerView
  */
 - (void)onBackViewClickWithAliyunVodPlayerView:(AliyunVodPlayerView*)playerView;
+
 /**
  * 功能：暂停事件
+ * 参数：currentPlayTime ： 暂停时播放时间
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onPause:(NSTimeInterval)currentPlayTime;
+
 /**
  * 功能：继续事件
+ * 参数：currentPlayTime ： 继续播放时播放时间。
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onResume:(NSTimeInterval)currentPlayTime;
+
 /**
  * 功能：播放完成事件 ，请区别stop（停止播放）
+ * 参数：playerView ： AliyunVodPlayerView
  */
 - (void)onFinishWithAliyunVodPlayerView:(AliyunVodPlayerView*)playerView;
+
 /**
  * 功能：停止播放
+ * 参数：currentPlayTime ： 播放停止时播放时间。
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onStop:(NSTimeInterval)currentPlayTime;
+
 /**
  * 功能：拖动进度条结束事件
+ * 参数：seekDoneTime ： seekDone时播放时间。
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onSeekDone:(NSTimeInterval)seekDoneTime;
+
 /**
  * 功能：是否锁屏
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView lockScreen:(BOOL)isLockScreen;
+
 /**
  * 功能：切换后的清晰度
+ * 参数：quality ：切换后的清晰度
+        playerView ： AliyunVodPlayerView
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onVideoQualityChanged:(AliyunVodPlayerVideoQuality)quality;
 
 /**
- * 功能：切换后的清晰度，清晰度非枚举类型，字符串，适应于MTS播放
+ * 功能：切换后的清晰度，清晰度非枚举类型，字符串，适应于媒体转码播放
+ * 参数：videoDefinition ： 媒体处理，切换清晰度后清晰度
+        playerView ：AliyunVodPlayerView
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onVideoDefinitionChanged:(NSString*)videoDefinition;
 
 /**
  * 功能：返回调用全屏
+ * 参数：isFullScreen ： 点击全屏按钮后，返回当前是否全屏状态
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView *)playerView fullScreen:(BOOL)isFullScreen;
+
 /**
  * 功能：循环播放开始
+ * 参数：playerView ：AliyunVodPlayerView
  */
 - (void)onCircleStartWithVodPlayerView:(AliyunVodPlayerView *)playerView;
 
@@ -77,7 +97,7 @@
 /**
  * 功能：播放器初始化后，获取播放器是否播放。
  */
-@property (nonatomic, readonly,assign)BOOL isPlaying;
+@property (nonatomic, readonly, assign) BOOL isPlaying;
 
 /**
  * 功能：设置网络超时时间，单位毫秒
@@ -94,30 +114,31 @@
  *************************************************
  可参考UI播放器Demo中的使用！可参考UI播放器Demo中的使用！可参考UI播放器Demo中的使用！
  *************************************************
-isLockScreen 会锁定，播放器界面尺寸。
-isLockPortrait yes：竖屏全屏；no：横屏全屏;
+
+isScreenLocked 会锁定，播放器界面尺寸。
+fixedPortrait yes：竖屏全屏；no：横屏全屏;
 isLockScreen对isLockPortrait无效。
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView *)playerView lockScreen:(BOOL)isLockScreen此方法在isLockPortrait==yes时，返回的islockscreen总是yes；
 isLockScreen和isLockPortrait，因为播放器时UIView，是否旋转需要配合UIViewController来控制物理旋转。
 假设：支持竖屏全屏
-self.playerView.isLockPortrait = YES;
-self.playerView.isLockScreen = NO;
-self.isLock = self.playerView.isLockScreen||self.playerView.isLockPortrait?YES:NO;
+self.playerView.fixedPortrait = YES;
+self.playerView.isScreenLocked = NO;
+self.isLock = self.playerView.isScreenLocked||self.playerView.fixedPortrait?YES:NO;
 
 支持横屏全屏
-self.playerView.isLockPortrait = NO;
-self.playerView.isLockScreen = NO;
-self.isLock = self.playerView.isLockScreen||self.playerView.isLockPortrait?YES:NO;
+self.playerView.fixedPortrait = NO;
+self.playerView.isScreenLocked = NO;
+self.isLock = self.playerView.isScreenLocked||self.playerView.fixedPortrait?YES:NO;
 
 锁定屏幕
-self.playerView.isLockPortrait = NO;
-self.playerView.isLockScreen = YES;
-self.isLock = self.playerView.isLockScreen||self.playerView.isLockPortrait?YES:NO;
+self.playerView.fixedPortrait = NO;
+self.playerView.isScreenLocked = YES;
+self.isLock = self.playerView.isScreenLocked||self.playerView.fixedPortrait?YES:NO;
 
 self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcontroller在navigationcontroller中，需要添加子类重写navigationgController中的 以下方法，根据实际情况做判定 。
 */
-@property (nonatomic, assign)BOOL isLockScreen;
-@property (nonatomic, assign)BOOL isLockPortrait;
+@property (nonatomic, assign)BOOL isScreenLocked;
+@property (nonatomic, assign)BOOL fixedPortrait;
 
 /**
  * 功能：设置/获取清晰度，用来切换视频清晰度
@@ -128,13 +149,13 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  AliyunVodPlayerVideo2K,            // 2K
  AliyunVodPlayerVideo4K,            // 4K
  AliyunVodPlayerVideoOD,            // 原始
- 
+
  * 备注：可提前设置播放所选清晰度，默认播放最高清晰度。
  */
-@property (nonatomic, assign)AliyunVodPlayerVideoQuality quality;
+@property (nonatomic, assign) AliyunVodPlayerVideoQuality quality;
 
 /**
- * 功能：设置/获取清晰度，用来切换视频清晰度，非枚举类型，MTS播放
+ * 功能：设置/获取清晰度，用来切换视频清晰度，非枚举类型，媒体处理播放
  * 备注：在播放之后才能调用
  */
 @property (nonatomic, assign) NSString* videoDefinition;
@@ -143,21 +164,26 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  功能：当前视频播放位置，单位为秒
  备注：在开始播放之后才能够获取当前播放位置。
  */
-@property (nonatomic, readonly,assign)NSTimeInterval currentTime;
+@property (nonatomic, readonly,assign) NSTimeInterval currentTime;
     
 /**
  * 参数：coverUrl 图片地址。
  * 功能：封面图片。
  */
-@property (nonatomic, strong)NSURL *coverUrl;
+@property (nonatomic, strong) NSURL *coverUrl;
 
 
 /**
  * 功能：获取缓冲的时长，只读属性，单位为毫秒。
  * 备注：当调用了prepareToPlay后，并且开始播放后，才能获取该值。
  */
-@property(nonatomic, readonly)  NSTimeInterval bufferPercentage;
+@property(nonatomic, readonly) NSTimeInterval bufferPercentage;
 
+/*
+ 功能：初始化界面皮肤
+ 备注：默认皮肤为蓝色
+ */
+@property (nonatomic, assign) AliyunVodPlayerViewSkin viewSkin;
 /*
  功能：初始化窗口大小
  参数：frame:视图view大小
@@ -178,12 +204,16 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
 - (instancetype)initWithFrame:(CGRect)frame andSkin:(AliyunVodPlayerViewSkin)skin;
 
 
+
 /*
  *功能：临时AccessKeyId、AccessKeySecret和SecurityToken：开启RAM授权，并通过STS授权系统提供的OpenAPI或SDK获取的AccessKeyId、AccessKeySecret和SecurityToken，用于播放和下载请求
  *备注：参数明细->https://help.aliyun.com/document_detail/28788.html?spm=5176.doc28787.6.706.2G5SLS
  *版本：3.2.0版本使用
  */
-- (void)playViewPrepareWithVid:(NSString *)vid accessKeyId:(NSString*)accessKeyId accessKeySecret:(NSString*)accessKeySecret securityToken:(NSString *)securityToken;
+- (void)playViewPrepareWithVid:(NSString *)vid
+                   accessKeyId:(NSString*)accessKeyId
+               accessKeySecret:(NSString*)accessKeySecret
+                 securityToken:(NSString *)securityToken;
 
 /*
  *功能：使用vid+playauth方式播放。
@@ -204,9 +234,9 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  python playAuth.py
  在终端中查看获取的PlayAuth和VideoId。
  在播放器SDK中使用获取的PlayAuth和VideoId进行播放，注意PlayAuth的时效为100秒，如果过期请重新获取。
- 
  */
-- (void)playViewPrepareWithVid:(NSString *)vid playAuth : (NSString *)playAuth;
+- (void)playViewPrepareWithVid:(NSString *)vid
+                      playAuth:(NSString *)playAuth;
 
 /*
  *功能：播放器初始化视频，主要目的是分析视频内容，读取视频头信息，解析视频流中的视频和音频信息，并根据视频和音频信息去寻找解码器，创建播放线程等
@@ -224,12 +254,12 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  *备注：
  */
 - (void)playViewPrepareWithVid:(NSString *)vid
-                     accessId : (NSString *)accessId
-                 accessSecret : (NSString *)accessSecret
-                     stsToken : (NSString *)stsToken
-                     autoInfo : (NSString *)autoInfo
-                       region : (NSString *)region
-                   playDomain : (NSString *)playDomain
+                      accessId:(NSString *)accessId
+                  accessSecret:(NSString *)accessSecret
+                      stsToken:(NSString *)stsToken
+                      autoInfo:(NSString *)autoInfo
+                        region:(NSString *)region
+                    playDomain:(NSString *)playDomain
                 mtsHlsUriToken:(NSString *)mtsHlsUriToken;
 
 /*
@@ -238,7 +268,6 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
     autoPlay：YES为自动播放
  */
 - (void)setAutoPlay:(BOOL)autoPlay;
-
 
 /*
  功能：开始播放视频
@@ -270,6 +299,7 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  功能：停止播放销毁图层
  */
 - (void)reset;
+
 /*
  功能：释放播放器
  */
@@ -301,13 +331,13 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  * 功能：
  * 参数：设置渲染视图角度
  */
--(void) setRenderRotate:(RenderRotate)rotate;
+-(void)setRenderRotate:(RenderRotate)rotate;
 
 /**
  * 功能：
  * 参数：设置渲染镜像
  */
--(void) setRenderMirrorMode:(RenderMirrorMode)mirrorMode;
+-(void)setRenderMirrorMode:(RenderMirrorMode)mirrorMode;
 
 /**
  * 功能：循环播放控制
@@ -317,18 +347,13 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
 /**
  * 功能：截取当前正在播放图像
  */
--(UIImage*) snapshot;
+- (UIImage *)snapshot;
 
 /*
  功能：获取此播放器版本号
  */
-- (NSString*) getSDKVersion;
-    
-/*
- 功能：隐藏,后续改进隐藏方案;yes：隐藏所有功能按钮界面。
- */
-- (void)setBackViewHidden:(BOOL)hidden ;
-    
+- (NSString *)getSDKVersion;
+
 /*
  功能：设置标题
  */
@@ -344,45 +369,47 @@ self.isLock时来判定UIViewController 是否支持物理旋转。如果viewcon
  * 参数：block:音频数据回调
  *
  */
--(void) getAudioData:(void (^)(NSData *data))block;
+- (void)getAudioData:(void (^)(NSData *data))block;
 /**
  * 功能：设置边播边缓存功能
  * 参数：bEnabled:是否开启缓存功能
  *      saveDir:缓存存储的路径
- *      maxSize:缓存路径最大空间
- *      maxDuration:缓存最大视频最大长度
+ *      maxSize:缓存路径最大空间 MB
+ *      maxDuration:缓存最大视频最大长度 秒
  */
--(void) setPlayingCache:(BOOL)bEnabled saveDir:(NSString*)saveDir maxSize:(int64_t)maxSize maxDuration:(int)maxDuration;
-
+- (void)setPlayingCache:(BOOL)bEnabled
+                saveDir:(NSString*)saveDir
+                maxSize:(int64_t)maxSize
+            maxDuration:(int)maxDuration;
 
 /**
  * 功能：播放器播放结束，文字描述；
  * 参数：默认文案：@"再次观看，请点击重新播放";
  */
--(void)setPlayFinishDescribe:(NSString *)des;
+- (void)setPlayFinishDescribe:(NSString *)des;
 
 /**
  * 功能：播放器网络状态不好，文字描述；
  * 参数：默认文案：@"当前网络不佳，请稍后点击重新播放";
  */
--(void)setNetTimeOutDescribe:(NSString *)des;
+- (void)setNetTimeOutDescribe:(NSString *)des;
 
 /**
  * 功能：播放器无网络，文字描述；
  * 参数：默认文案：@"无网络连接，检查网络后点击重新播放";
  */
--(void)setNoNetDescribe:(NSString *)des;
+- (void)setNoNetDescribe:(NSString *)des;
 
 /**
  * 功能：播放器加载出错，文字描述；
  * 参数：默认文案：@"视频加载出错，请点击重新播放";
  */
--(void)setLoaddataErrorDescribe:(NSString *)des;
+- (void)setLoaddataErrorDescribe:(NSString *)des;
 
 /**
  * 功能：播放器4G网络状态，文字描述；
  * 参数：默认文案：@"当前为移动网络，请点击播放";
  */
--(void)setUseWanNetDescribe:(NSString *)des;
+- (void)setUseWanNetDescribe:(NSString *)des;
 
 @end
