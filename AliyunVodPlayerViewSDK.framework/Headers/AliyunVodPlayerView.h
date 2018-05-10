@@ -15,12 +15,26 @@
  */
 @class AliyunVodPlayerView;
 @protocol AliyunVodPlayerViewDelegate <NSObject>
+
+@required
 /**
  * 功能：返回按钮事件
  * 参数：playerView ：AliyunVodPlayerView
  */
 - (void)onBackViewClickWithAliyunVodPlayerView:(AliyunVodPlayerView*)playerView;
 
+/**
+ * 功能：是否锁屏
+ */
+- (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView lockScreen:(BOOL)isLockScreen;
+
+/**
+ * 功能：返回调用全屏
+ * 参数：isFullScreen ： 点击全屏按钮后，返回当前是否全屏状态
+ */
+- (void)aliyunVodPlayerView:(AliyunVodPlayerView *)playerView fullScreen:(BOOL)isFullScreen;
+
+@optional
 /**
  * 功能：暂停事件
  * 参数：currentPlayTime ： 暂停时播放时间
@@ -52,11 +66,6 @@
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onSeekDone:(NSTimeInterval)seekDoneTime;
 
 /**
- * 功能：是否锁屏
- */
-- (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView lockScreen:(BOOL)isLockScreen;
-
-/**
  * 功能：切换后的清晰度
  * 参数：quality ：切换后的清晰度
         playerView ： AliyunVodPlayerView
@@ -69,12 +78,6 @@
         playerView ：AliyunVodPlayerView
  */
 - (void)aliyunVodPlayerView:(AliyunVodPlayerView*)playerView onVideoDefinitionChanged:(NSString*)videoDefinition;
-
-/**
- * 功能：返回调用全屏
- * 参数：isFullScreen ： 点击全屏按钮后，返回当前是否全屏状态
- */
-- (void)aliyunVodPlayerView:(AliyunVodPlayerView *)playerView fullScreen:(BOOL)isFullScreen;
 
 /**
  * 功能：循环播放开始

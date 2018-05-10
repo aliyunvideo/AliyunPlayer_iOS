@@ -59,18 +59,69 @@
 
 @protocol AliyunVodDownLoadDelegate <NSObject>
 
+@required
+/*
+ 功能：准备下载回调。
+ 回调数据：AliyunDownloadMediaInfo数组
+ */
+-(void) onPrepare:(NSArray<AliyunDownloadMediaInfo*>*)mediaInfos;
+
+/*
+ 功能：下载开始回调。
+ 回调数据：AliyunDownloadMediaInfo
+ */
+-(void) onStart:(AliyunDownloadMediaInfo*)mediaInfo;
+
+/*
+  功能：调用stop结束下载时回调。
+  回调数据：AliyunDownloadMediaInfo
+  */
+-(void) onStop:(AliyunDownloadMediaInfo*)mediaInfo;
+
+/*
+  功能：下载完成回调。
+  回调数据：AliyunDownloadMediaInfo
+  */
+-(void) onCompletion:(AliyunDownloadMediaInfo*)mediaInfo;
+
+/*
+  功能：下载进度回调。可通过mediaInfo.downloadProgress获取进度。
+  回调数据：AliyunDownloadMediaInfo
+  */
+-(void) onProgress:(AliyunDownloadMediaInfo*)mediaInfo;
+
+/*
+  功能：错误回调。错误码与错误信息详见文档。
+  回调数据：AliyunDownloadMediaInfo， code：错误码 msg：错误信息
+  */
+-(void)onError:(AliyunDownloadMediaInfo*)mediaInfo code:(int)code msg:(NSString *)msg;
+
+
+@optional
+
+/*
+  功能：改变加密文件（调用changeEncryptFile时回调）。
+  回调数据：重新加密之前视频文件进度
+  */
+-(void) onChangeEncryptFileProgress:(int)progress;
+
+
+/*
+  功能：改变加密文件后老的加密视频重新加密完成时回调。加密完成后注意删除老的加密文件。
+  */
+-(void) onChangeEncryptFileComplete;
+
 /*
  功能：未完成回调，异常中断导致下载未完成，下次启动后会接收到此回调。
  回调数据：AliyunDownloadMediaInfo数组
  */
 -(void) onUnFinished:(NSArray<AliyunDataSource*>*)mediaInfos;
 
-
 /*
   功能：开始下载后收到回调，更新最新的playAuth。主要场景是开始多个下载时，等待下载的任务自动开始下载后，playAuth有可能已经过期了，需通过此回调更新
-  参数：返回当前数据
-  返回：使用代理方法，设置playauth来更新数据。
-  备注：如通过请求数据来获取playAuth，请使用同步方法。此代理方法在其他线程里，不会存在卡线程问题。
+ 参数：返回当前数据
+ 返回：使用代理方法，设置playauth来更新数据。
+ 备注：如通过请求数据来获取playAuth，请使用同步方法。此代理方法在其他线程里，不会存在卡线程问题。
   */
 -(NSString*)onGetPlayAuth:(NSString*)vid format:(NSString*)format quality:(AliyunVodPlayerVideoQuality)quality;
 
@@ -96,54 +147,6 @@
                              quality:(NSString *)quality;
 
 
-
-/*
- 功能：准备下载回调。
- 回调数据：AliyunDownloadMediaInfo数组
- */
--(void) onPrepare:(NSArray<AliyunDownloadMediaInfo*>*)mediaInfos;
-
-/*
- 功能：下载开始回调。
- 回调数据：AliyunDownloadMediaInfo
- */
--(void) onStart:(AliyunDownloadMediaInfo*)mediaInfo;
-
-/*
-  功能：下载进度回调。可通过mediaInfo.downloadProgress获取进度。
-  回调数据：AliyunDownloadMediaInfo
-  */
--(void) onProgress:(AliyunDownloadMediaInfo*)mediaInfo;
-
-/*
-  功能：调用stop结束下载时回调。
-  回调数据：AliyunDownloadMediaInfo
-  */
--(void) onStop:(AliyunDownloadMediaInfo*)mediaInfo;
-
-/*
-  功能：下载完成回调。
-  回调数据：AliyunDownloadMediaInfo
-  */
--(void) onCompletion:(AliyunDownloadMediaInfo*)mediaInfo;
-
-/*
-  功能：改变加密文件（调用changeEncryptFile时回调）。
-  回调数据：重新加密之前视频文件进度
-  */
--(void) onChangeEncryptFileProgress:(int)progress;
-
-
-/*
-  功能：改变加密文件后老的加密视频重新加密完成时回调。加密完成后注意删除老的加密文件。
-  */
--(void) onChangeEncryptFileComplete;
-
-/*
-  功能：错误回调。错误码与错误信息详见文档。
-  回调数据：AliyunDownloadMediaInfo， code：错误码 msg：错误信息
-  */
--(void)onError:(AliyunDownloadMediaInfo*)mediaInfo code:(int)code msg:(NSString *)msg;
 
 @end
 
