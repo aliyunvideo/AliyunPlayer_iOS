@@ -82,6 +82,10 @@ AliyunVodPlayerViewSDK.framework : UI播放器动态库
 ```
 
 ## 版本更新
+### 3.4.5
+```
+UI播放器已经开源，pod集成中在添加UI播放器的SDK部分，同时包括图片库。
+```
 ### 3.2.0
 第一版。
 ### 3.2.1
