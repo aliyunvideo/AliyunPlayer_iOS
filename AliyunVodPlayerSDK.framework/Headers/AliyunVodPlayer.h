@@ -230,6 +230,10 @@
  */
 -(void) setRenderMirrorMode:(RenderMirrorMode)mirrorMode;
 
+
+- (void) setTraceID:(NSString*)traceId;
+
+
 /**
  * AliyunVodPlayerManagerDelegate 播放器代理
  */
@@ -269,6 +273,17 @@
  * 备注：当播放网络流时，设置网络超时时间，默认15000毫秒
  */
 @property(nonatomic, assign) int timeout;
+
+
+/**
+ * 功能：获取旋转角度
+ */
+@property(nonatomic, readonly) double videoRotation;
+
+/**
+ * 功能：是否开启日志发送
+ */
+@property(nonatomic, assign)  BOOL enableLogReport;
 
 /*
  功能：视频总长度，单位为秒

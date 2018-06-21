@@ -141,6 +141,9 @@
  */
 - (void) setUserID:(NSString*)userID;
 
+
+- (void) setTraceID:(NSString*)traceId;
+
 /**
  * 功能：是否正在播放
  */
@@ -263,6 +266,15 @@
  */
 @property(nonatomic, readwrite)  BOOL circlePlay;
 
+/**
+ * 功能：获取旋转角度
+ */
+@property(nonatomic, readonly) double videoRotation;
+
+/**
+ * 功能：是否开启日志发送
+ */
+@property(nonatomic, assign)  BOOL enableLogReport;
 
 /**
  * 功能：获取播放器调试信息。

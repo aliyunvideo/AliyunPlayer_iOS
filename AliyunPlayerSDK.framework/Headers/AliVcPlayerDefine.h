@@ -141,6 +141,15 @@ typedef NSInteger RenderMirrorMode;
 //视频首帧显示时间，double值
 #define FLT_1ST_VFRAME_SHOW @"1st-vframeshow"
 
+//视频首帧解码时间，double值
+#define FLT_1ST_VFRAME_DECODE @"1st-vdecode"
+
+//视频首帧渲染时间，int64值
+#define FLT_1ST_VFRAME_RENDER @"1st-vrender"
+
+//视频首次下载时间，int64值
+#define FLT_1ST_DOWNLOAD_TIME @"1st-download"
+
 //视频find stream info的时间
 #define FLT_FIND_STREAM_TIME @"find-stream"
 

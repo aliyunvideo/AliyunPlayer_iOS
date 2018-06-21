@@ -41,7 +41,7 @@ enum{
     ALIVC_ERR_DATA_ERROR                            = 4501,     //服务器返回数据错误
     ALIVC_ERR_QEQUEST_SAAS_SERVER_ERROR             = 4502,     //请求saas服务器错误
     ALIVC_ERR_QEQUEST_MTS_SERVER_ERROR              = 4503,     //请求mts服务器错误
-    ALIVC_ERR_SERVER_INVALID_PARAM                 = 4504,      //服务器返回参数无效，请检查XX参数
+    ALIVC_ERR_SERVER_INVALID_PARAM                  = 4504,      //服务器返回参数无效，请检查XX参数
     ALIVC_ERR_ILLEGALSTATUS                         = 4521,     //非法的播放器状态，当前状态是xx
     ALIVC_ERR_NO_VIEW                               = 4022,     //没有设置显示窗口，请先设置播放视图
     ALIVC_ERR_NO_MEMORY                             = 4023,     //内存不足
