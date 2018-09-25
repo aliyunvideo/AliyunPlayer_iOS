@@ -126,6 +126,10 @@
  */
 -(NSString*) getPropertyString:(int)property defaultValue:(NSString*)defaultValue;
 
+/**
+ * 功能：设置代理
+ */
+-(void) setHttpProxy:(NSString*)strProxy;
 
 /**
  * 功能：设置业务ID。

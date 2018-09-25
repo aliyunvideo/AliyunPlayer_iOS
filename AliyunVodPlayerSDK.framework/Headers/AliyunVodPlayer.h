@@ -36,6 +36,18 @@
 @optional
 
 /**
+ * 功能：获取缓冲进度0-100
+ * 参数：loadingProgress ： 缓冲进度0-100 
+ */
+- (void)vodPlayer:(AliyunVodPlayer*)vodPlayer loadingProgress:(int)loadingProgress;
+
+/**
+ * 功能：播放器状态改变回调
+ * 参数：newPlayerState： 新播放器状态
+ */
+- (void)vodPlayer:(AliyunVodPlayer*)vodPlayer newPlayerState:(AliyunVodPlayerState)newState;
+
+/**
  * 功能：播放器播放即将切换清晰度时
  * 参数：quality ： vid+playauth播放方式、vid+sts播放方式时的清晰度
         videoDefinition ： 媒体转码播放方式的清晰度
@@ -208,6 +220,10 @@
   */
 - (AliyunVodPlayerVideo *)getAliyunMediaInfo;
 
+/**
+ * 功能：设置代理
+ */
+-(void) setHttpProxy:(NSString*)strProxy;
 
 /**
  * 功能：设置边播边缓存功能

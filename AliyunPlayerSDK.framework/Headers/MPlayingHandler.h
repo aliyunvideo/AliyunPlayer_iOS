@@ -56,6 +56,7 @@ public:
         ,INFOREPORT_EOS
 
         ,INFOREPORT_PLAYING_DOWN
+        ,INFOREPORT_WAIT
     };
     
     //define arg0 now.
@@ -94,6 +95,7 @@ public:
         , k0AudioDecoding
 
         , k0CircleStart
+        , k0Wait
         
     };
     

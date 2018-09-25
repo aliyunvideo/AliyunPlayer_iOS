@@ -62,6 +62,7 @@ ALIVC_EXTERN NSString * const AliVcMediaPlayerEndCachingNotification;
 ALIVC_EXTERN NSString * const AliVcMediaPlayerFirstFrameNotification;
 ALIVC_EXTERN NSString * const AliVcMediaPlayerCircleStartNotification;
 ALIVC_EXTERN NSString * const AliVcMediaPlayerSeiDataNotification;
+ALIVC_EXTERN NSString * const AliVcMediaPlayerCachingProgressNotification;
 
 /**
  *  播放器媒体类型
