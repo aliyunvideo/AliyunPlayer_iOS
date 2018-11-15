@@ -225,6 +225,25 @@
  */
 -(void) setHttpProxy:(NSString*)strProxy;
 
+
+/**
+ * 功能：获取long属性
+ */
+-(long) getPropertyLong:(int)key defaultValue:(long)defaultValue;
+
+
+/**
+ * 功能：获取double属性
+ */
+-(double) getPropertyDouble:(int)key defaultValue:(double)defaultValue;
+
+
+/**
+ * 功能：获取string属性
+ */
+-(NSString*) getPropertyString:(int)key defaultValue:(NSString*)defaultValue;
+
+
 /**
  * 功能：设置边播边缓存功能
  * 参数：bEnabled:是否开启缓存功能

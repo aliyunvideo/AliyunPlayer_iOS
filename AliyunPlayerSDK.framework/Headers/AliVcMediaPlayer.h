@@ -19,6 +19,81 @@
 #import <Foundation/Foundation.h> 
 #import <UIKit/UIKit.h>
 #import "AliVcPlayerDefine.h"
+
+
+
+#define PROP_DOUBLE_VIDEO_DECODE_FRAMES_PER_SECOND  10001
+#define PROP_DOUBLE_VIDEO_OUTPUT_FRAMES_PER_SECOND  10002
+
+#define FFP_PROP_DOUBLE_CREATE_PLAY_TIME                 18000
+#define FFP_PROP_DOUBLE_OPEN_FORMAT_TIME                 18001
+#define FFP_PROP_DOUBLE_FIND_STREAM_TIME                 18002
+#define FFP_PROP_DOUBLE_OPEN_STREAM_TIME                 18003
+#define FFP_PROP_DOUBLE_1st_VFRAME_SHOW_TIME             18004
+#define FFP_PROP_DOUBLE_1st_AFRAME_SHOW_TIME             18005
+#define FFP_PROP_DOUBLE_1st_VPKT_GET_TIME                18006
+#define FFP_PROP_DOUBLE_1st_APKT_GET_TIME                18007
+#define FFP_PROP_DOUBLE_1st_VDECODE_TIME                 18008
+#define FFP_PROP_DOUBLE_1st_ADECODE_TIME                 18009
+#define FFP_PROP_DOUBLE_DECODE_TYPE                      18010
+
+#define FFP_PROP_DOUBLE_LIVE_DISCARD_DURATION            18011
+#define FFP_PROP_DOUBLE_LIVE_DISCARD_CNT                 18012
+#define FFP_PROP_DOUBLE_DISCARD_VFRAME_CNT               18013
+#define FFP_PROP_DOUBLE_1st_VRENDER_TIME                 18014
+
+#define FFP_PROP_DOUBLE_RTMP_OPEN_DURATION               18040
+#define FFP_PROP_DOUBLE_RTMP_OPEN_RTYCNT                 18041
+#define FFP_PROP_DOUBLE_RTMP_NEGOTIATION_DURATION        18042
+#define FFP_PROP_DOUBLE_HTTP_OPEN_DURATION               18060
+#define FFP_PROP_DOUBLE_HTTP_OPEN_RTYCNT                 18061
+#define FFP_PROP_DOUBLE_HTTP_REDIRECT_CNT                18062
+#define FFP_PROP_DOUBLE_TCP_CONNECT_TIME                 18080
+#define FFP_PROP_DOUBLE_TCP_DNS_TIME                     18081
+#define FFP_PROP_DOUBLE_FIRST_VIDEO_DECODE_TIME          18082
+#define FFP_PROP_DOUBLE_FIRST_VIDEO_RENDER_TIME          18083
+#define FFP_PROP_DOUBLE_FIRST_DOWNLOAD_TIME              18084
+
+//decode type
+#define     FFP_PROPV_DECODER_UNKNOWN                   0
+#define     FFP_PROPV_DECODER_AVCODEC                   1
+#define     FFP_PROPV_DECODER_MEDIACODEC                2
+#define     FFP_PROPV_DECODER_VIDEOTOOLBOX              3
+
+#define FFP_PROP_INT64_VIDEO_CACHED_DURATION            20005
+#define FFP_PROP_INT64_AUDIO_CACHED_DURATION            20006
+#define FFP_PROP_INT64_VIDEO_CACHED_BYTES               20007
+#define FFP_PROP_INT64_AUDIO_CACHED_BYTES               20008
+#define FFP_PROP_INT64_VIDEO_CACHED_PACKETS             20009
+#define FFP_PROP_INT64_AUDIO_CACHED_PACKETS             20010
+#define FFP_PROP_INT64_VIDEO_DOWNLOAD_PLAY_DIFF         20011
+#define FFP_PROP_INT64_VIDEO_DOWNLOAD_DIFF              20012
+#define FFP_PROP_INT64_VIDEO_LASTPTS                    20013
+#define FFP_PROP_INT64_AUDIO_LASTPTS                    20014
+#define FFP_PROP_INT64_AUDIO_RENDERBUFFER_COUNT         20015
+#define FFP_PROP_INT64_VIDEO_RENDERBUFFER_COUNT         20016
+#define FFP_PROP_INT64_AUDIO_DOWNLOAD_PLAY_DIFF         20017
+#define FFP_PROP_INT64_AUDIO_FIRST_DROP_COUNT           20018
+#define FFP_PROP_INT64_BUFFERING_COUNT                  20019
+#define FFP_PROP_INT64_DOWNLOAD_SPEED                   20020
+#define FFP_PROP_INT64_DOWNLOAD_SIZE                    20021
+#define FFP_PROP_INT64_DOWNLOAD_DURATION                20022
+#define FFP_PROP_INT64_DOWNLOAD_TIME                    20023
+#define FFP_PROP_INT64_VIDEO_CURRENT_PTS                20024
+
+#define FFP_PROP_INT64_SELECTED_VIDEO_STREAM            20001
+#define FFP_PROP_INT64_SELECTED_AUDIO_STREAM            20002
+
+#define FFP_PROP_STRING_CDN_IP                          20100
+#define FFP_PROP_STRING_EAGLE_ID                        20101
+#define FFP_PROP_STRING_CDN_VIA                         20102
+#define FFP_PROP_STRING_CDN_ERROR                       20103
+#define FFP_PROP_STRING_OPEN_TIME_STR                   20104
+
+#define FFP_PROP_STRING_LAST_URL                        20105
+#define FFP_PROP_STRING_LAST_IP                         20106
+
+
 /**
  * iOS媒体播放器SDK是在iOS平台上使用的软件开发工具包（Software Developement Kit），为iOS开发者提供简单易用的接口，帮助开发者实现iOS平台上的媒体播放应用开发。该SDK对目前主流的视频格式都提供了良好的支持，支持本地和网络媒体的播放，弥补了系统播放器在媒体格式上的不足。
  
