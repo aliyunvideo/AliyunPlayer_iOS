@@ -28,6 +28,7 @@
 @property(nonatomic,copy)NSString *accessKeyId;
 @property(nonatomic,copy)NSString *accessKeySecret;
 @property(nonatomic,copy)NSString *securityToken;
+@property(nonatomic,copy)NSString *region;
 
 @end
 

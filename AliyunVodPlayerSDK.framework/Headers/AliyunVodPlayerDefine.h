@@ -15,6 +15,8 @@ typedef NS_ENUM(NSUInteger, AliyunVodPlayerVideoQuality) { //视频质量
     AliyunVodPlayerVideo2K,            // 2K
     AliyunVodPlayerVideo4K,            // 4K
     AliyunVodPlayerVideoOD,            // 原画
+    AliyunVodPlayerAudioSQ,            // 音频SQ
+    AliyunVodPlayerAudioHQ             // 音频HQ
 };
 
 typedef NS_ENUM(NSUInteger, AliyunVodPlayerEvent) {       //视频事件回馈

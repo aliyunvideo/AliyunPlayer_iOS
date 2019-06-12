@@ -109,7 +109,14 @@
        accessKeySecret:(NSString *)accessKeySecret
          securityToken:(NSString *)securityToken;
 
-
+/*
+ *region参数针对国际化，默认cn-shanghai
+ */
+- (void)prepareWithVid:(NSString *)vid
+           accessKeyId:(NSString *)accessKeyId
+       accessKeySecret:(NSString *)accessKeySecret
+         securityToken:(NSString *)securityToken
+                region:(NSString *)region;
 
 /*
  *功能：使用vid+playauth方式播放。

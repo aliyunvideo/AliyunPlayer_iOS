@@ -34,6 +34,12 @@
  */
 @property (nonatomic,copy) NSString *coverUrl;
 
+
+/*
+ 缩略图地址
+ */
+@property (nonatomic,copy) NSString *thumbUrl;
+
 /*
  videoQuality为视频清晰度
  */
